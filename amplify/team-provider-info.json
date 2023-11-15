@@ -10,6 +10,12 @@
       "StackName": "amplify-p2preview-dev-160151",
       "StackId": "arn:aws:cloudformation:eu-central-1:681139224454:stack/amplify-p2preview-dev-160151/e1cf96c0-7e47-11ee-9e6a-02349380763f",
       "AmplifyAppId": "dz5lqw3sy00vf"
+    },
+    "categories": {
+      "auth": {
+        "p2preview157574ac": {},
+        "p2previewcfee4370": {}
+      }
     }
   }
 }
