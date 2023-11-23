@@ -1,10 +1,8 @@
 export type AmplifyDependentResourcesAttributes = {
   "auth": {
-    "p2previewcfee4370": {
+    "p2preview606ca9ee606ca9ee": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
-      "IdentityPoolId": "string",
-      "IdentityPoolName": "string",
       "UserPoolArn": "string",
       "UserPoolId": "string",
       "UserPoolName": "string"

@@ -9,12 +9,13 @@
       "UnauthRoleName": "amplify-p2preview-dev-160151-unauthRole",
       "StackName": "amplify-p2preview-dev-160151",
       "StackId": "arn:aws:cloudformation:eu-central-1:681139224454:stack/amplify-p2preview-dev-160151/e1cf96c0-7e47-11ee-9e6a-02349380763f",
-      "AmplifyAppId": "dz5lqw3sy00vf"
+      "AmplifyAppId": "dz5lqw3sy00vf",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-p2preview-dev-160151-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
       "auth": {
         "p2preview157574ac": {},
-        "p2previewcfee4370": {}
+        "p2preview606ca9ee606ca9ee": {}
       }
     }
   }
