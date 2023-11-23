@@ -1,8 +1,36 @@
-import { useState } from 'react';
 import './App.css';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import { UserContext } from './app/contexts/UserContext';
 
-function App() {
-  return <></>;
+function App({ signOut, user }) {
+  return (
+    <UserContext.Provider
+      value={{ signOut: signOut, user: user }}
+    ></UserContext.Provider>
+  );
 }
 
-export default App;
+const formFields = {
+  signUp: {
+    email: {
+      order: 1,
+    },
+    family_name: {
+      order: 2,
+    },
+    given_name: {
+      order: 3,
+    },
+    birthdate: {
+      order: 4,
+    },
+    password: {
+      order: 5,
+    },
+    confirm_password: {
+      order: 6,
+    },
+  },
+};
+
+export default withAuthenticator(App, { formFields: formFields });
