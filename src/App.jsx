@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import { UserContext } from './app/contexts/UserContext';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function App({ signOut, user }) {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <UserContext.Provider
+      value={{ signOut: signOut, user: user }}
+    ></UserContext.Provider>
+  );
 }
 
-export default App
+const formFields = {
+  signUp: {
+    email: {
+      order: 1,
+    },
+    family_name: {
+      order: 2,
+    },
+    given_name: {
+      order: 3,
+    },
+    birthdate: {
+      order: 4,
+    },
+    password: {
+      order: 5,
+    },
+    confirm_password: {
+      order: 6,
+    },
+  },
+};
+
+export default withAuthenticator(App, { formFields: formFields });
