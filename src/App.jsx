@@ -1,12 +1,15 @@
 import './App.css';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { UserContext } from './app/contexts/UserContext';
+import Header from './app/header/Header';
+import { Outlet } from 'react-router-dom';
 
 function App({ signOut, user }) {
   return (
-    <UserContext.Provider
-      value={{ signOut: signOut, user: user }}
-    ></UserContext.Provider>
+    <UserContext.Provider value={{ signOut: signOut, user: user }}>
+      <Header />
+      <Outlet />
+    </UserContext.Provider>
   );
 }
 
