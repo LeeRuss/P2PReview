@@ -1,0 +1,25 @@
+[
+  {
+    "name": "IT",
+    "subDepartments": [
+      "Webdev",
+      "Data Science",
+      "Gamedev",
+      "Hardware",
+      "Network",
+      "Software"
+    ]
+  },
+  { "name": "Health", "subDepartments": ["Dietetics", "Sport"] },
+  {
+    "name": "Art",
+    "subDepartments": [
+      "Music",
+      "Painting",
+      "Cinema",
+      "Sculpture",
+      "Literature",
+      "Architecture"
+    ]
+  }
+]
