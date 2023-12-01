@@ -12,6 +12,8 @@ import {
   Typography,
   Divider,
 } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 import specializationList from '../settings/specializations.json';
 
 export default function AddWorkForm() {
@@ -250,6 +252,7 @@ export default function AddWorkForm() {
           type="button"
           variant="contained"
           onClick={() => remove(index)}
+          startIcon={<DeleteIcon />}
           sx={{ width: '20%', alignSelf: 'flex-end' }}
         >
           Remove
@@ -259,6 +262,7 @@ export default function AddWorkForm() {
         type="button"
         variant="contained"
         onClick={() => append({ link: '', description: '' })}
+        startIcon={<AddIcon />}
         sx={{ width: '20%', margin: '0.5rem 0' }}
       >
         Add
