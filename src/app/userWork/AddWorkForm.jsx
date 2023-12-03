@@ -12,6 +12,7 @@ import {
   useTheme,
   Typography,
   Divider,
+  Tooltip,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -198,9 +199,11 @@ export default function AddWorkForm() {
           )}
         />
       </Box>
-      <Typography variant="h5" component="h2">
-        Links
-      </Typography>
+      <Tooltip title="Add links to your work. It can be github, youtube, google drive, soundcloud, your website and so on.">
+        <Typography variant="h5" component="h2">
+          Links
+        </Typography>
+      </Tooltip>
       <Divider
         variant="middle"
         flexItem
