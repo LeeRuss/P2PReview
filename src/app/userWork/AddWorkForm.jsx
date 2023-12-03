@@ -1,4 +1,5 @@
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   TextField,
@@ -18,6 +19,7 @@ import specializationList from '../settings/specializations.json';
 
 export default function AddWorkForm() {
   const theme = useTheme();
+  const navigate = useNavigate();
   const {
     handleSubmit,
     control,
@@ -31,6 +33,9 @@ export default function AddWorkForm() {
   function onSubmit(data) {
     console.log(data);
     //send new work to database
+    //after return of added work id go too work page
+    const id = 0;
+    navigate(`/work/${id}`);
   }
 
   return (
@@ -203,7 +208,7 @@ export default function AddWorkForm() {
       />
       {fields.flatMap((field, index) => [
         <Controller
-          key={`link-${index}`}
+          key={`link-${field.id}`}
           name={`links.${index}.link`}
           control={control}
           rules={{
@@ -222,14 +227,18 @@ export default function AddWorkForm() {
             <TextField
               {...field}
               label={`Link ${index + 1}`}
-              error={!!errors.links?.index.link}
-              helperText={errors.links?.index.link.message}
+              error={
+                errors.links ? (errors.links[index].link ? true : false) : false
+              }
+              helperText={
+                errors.links ? errors.links[index]?.link?.message : null
+              }
               sx={{ margin: '0.5rem 0' }}
             />
           )}
         />,
         <Controller
-          key={`link-description-${index}`}
+          key={`link-description-${field.id}`}
           name={`links.${index}.description`}
           control={control}
           rules={{
@@ -241,8 +250,16 @@ export default function AddWorkForm() {
             <TextField
               {...field}
               label={`Description ${index + 1}`}
-              error={!!errors.links?.index.description}
-              helperText={errors.links?.index.description.message}
+              error={
+                errors.links
+                  ? errors.links[index].description
+                    ? true
+                    : false
+                  : false
+              }
+              helperText={
+                errors.links ? errors.links[index]?.description?.message : null
+              }
               sx={{ margin: '0.5rem 0' }}
             />
           )}
