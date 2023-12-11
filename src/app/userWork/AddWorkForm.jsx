@@ -85,6 +85,7 @@ export default function AddWorkForm() {
             {...field}
             margin="normal"
             required
+            multiline
             fullWidth
             id="short_description"
             label="Short description"
