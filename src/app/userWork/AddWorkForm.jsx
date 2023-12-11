@@ -273,7 +273,7 @@ export default function AddWorkForm() {
           variant="contained"
           onClick={() => remove(index)}
           startIcon={<DeleteIcon />}
-          sx={{ width: '20%', alignSelf: 'flex-end' }}
+          sx={{ width: 'auto', alignSelf: 'flex-end' }}
         >
           Remove
         </Button>,
