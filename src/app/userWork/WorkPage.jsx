@@ -90,7 +90,7 @@ export default function Work() {
               sx={{ mt: '50%' }}
             ></CircularProgress>
           )}
-          {work && (
+          {!!work && (
             <>
               <Typography component="h1" variant="h3">
                 {work.title}
@@ -189,7 +189,7 @@ export default function Work() {
             </>
           )}
 
-          {error && (
+          {!!error && (
             <Typography
               component="h1"
               variant="h5"
