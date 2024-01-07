@@ -13,6 +13,7 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import AddReview from '../review/AddReview';
+import WorkReviewsList from './WorkReviewsList';
 
 const workObject = {
   id: 0,
@@ -38,6 +39,9 @@ const workObject = {
         'YouTube is a free video sharing website that makes it easy to watch online videos. You can even create and upload your own videos to share with others.',
     },
   ],
+  user: {
+    id: 1,
+  },
 };
 
 export default function Work() {
@@ -187,7 +191,7 @@ export default function Work() {
                   </ListItem>
                 ))}
               </List>
-              <AddReview />
+              {work.user.id === 1 ? <WorkReviewsList /> : <AddReview />}
             </>
           )}
 
