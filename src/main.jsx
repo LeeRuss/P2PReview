@@ -11,7 +11,7 @@ import WorkExplorer from './app/workExplorer/WorkExplorer.jsx';
 import UserWork from './app/userWork/UserWork.jsx';
 import UserReviews from './app/userReviews/UserReviews.jsx';
 import AddWork from './app/userWork/AddWork.jsx';
-import WorkPage from './app/userWork/WorkPage.jsx';
+import WorkPage from './app/work/WorkPage.jsx';
 
 Amplify.configure(awsExports);
 

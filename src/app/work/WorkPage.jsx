@@ -12,6 +12,7 @@ import {
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import AddReview from '../review/AddReview';
 
 const workObject = {
   id: 0,
@@ -186,6 +187,7 @@ export default function Work() {
                   </ListItem>
                 ))}
               </List>
+              <AddReview />
             </>
           )}
 

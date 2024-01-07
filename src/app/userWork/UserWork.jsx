@@ -8,7 +8,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-import WorkList from './WorkList';
+import WorkList from '../work/WorkList';
 import { useState, useEffect } from 'react';
 
 const workListExample = [
