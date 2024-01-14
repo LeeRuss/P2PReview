@@ -15,7 +15,19 @@
     "categories": {
       "auth": {
         "p2preview157574ac": {},
-        "p2preview606ca9ee606ca9ee": {}
+        "p2preview606ca9ee606ca9ee": {},
+        "p2preview1bba5fc91bba5fc9": {}
+      },
+      "function": {
+        "p2preview1bba5fc91bba5fc9PostConfirmation": {
+          "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
+          "s3Key": "amplify-builds/p2preview1bba5fc91bba5fc9PostConfirmation-664d51574d34784b6c75-build.zip",
+          "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
+          "dbPort": "5432",
+          "dbUser": "postgres",
+          "dbPassword": "AvAtAr!2",
+          "dbName": "postgres"
+        }
       }
     }
   }

@@ -1,0 +1,38 @@
+{
+  "trigger": true,
+  "modules": [
+    "custom"
+  ],
+  "parentResource": "p2preview1bba5fc91bba5fc9",
+  "functionName": "p2preview1bba5fc91bba5fc9PostConfirmation",
+  "resourceName": "p2preview1bba5fc91bba5fc9PostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "C:\\snapshot\\amplify-cli\\build\\node_modules\\@aws-amplify\\amplify-category-auth\\provider-utils\\awscloudformation\\triggers\\PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "p2preview1bba5fc91bba5fc9PostConfirmation",
+  "skipEdit": true,
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "dbEndpoint",
+      "environmentVariableName": "dbEndpoint"
+    },
+    {
+      "cloudFormationParameterName": "dbPort",
+      "environmentVariableName": "dbPort"
+    },
+    {
+      "cloudFormationParameterName": "dbUser",
+      "environmentVariableName": "dbUser"
+    },
+    {
+      "cloudFormationParameterName": "dbPassword",
+      "environmentVariableName": "dbPassword"
+    },
+    {
+      "cloudFormationParameterName": "dbName",
+      "environmentVariableName": "dbName"
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "resourceNameTruncated": "p2prev606ca9ee",
-    "userPoolName": "p2preview606ca9ee_userpool_606ca9ee",
+    "resourceNameTruncated": "p2prev1bba5fc9",
+    "userPoolName": "p2preview1bba5fc9_userpool_1bba5fc9",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -12,7 +12,7 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your verification code",
+    "emailVerificationSubject": "Verify your P2PReview account.",
     "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
@@ -32,10 +32,10 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "p2prev606ca9ee_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "p2prev1bba5fc9_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "606ca9ee",
-    "resourceName": "p2preview606ca9ee606ca9ee",
+    "sharedId": "1bba5fc9",
+    "resourceName": "p2preview1bba5fc91bba5fc9",
     "authSelections": "userPoolOnly",
     "useDefault": "manual",
     "usernameAttributes": [
@@ -43,7 +43,11 @@
     ],
     "userPoolGroups": false,
     "adminQueries": false,
-    "triggers": {},
+    "triggers": {
+      "PostConfirmation": [
+        "custom"
+      ]
+    },
     "hostedUI": false,
     "userPoolGroupList": [],
     "serviceName": "Cognito",

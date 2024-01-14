@@ -1,5 +1,44 @@
 {
   "auth": {
+    "p2preview1bba5fc91bba5fc9": {
+      "customAuth": false,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "p2preview1bba5fc91bba5fc9PostConfirmation",
+          "triggerProvider": "Cognito"
+        }
+      ],
+      "frontendAuthConfig": {
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "BIRTHDATE",
+          "EMAIL",
+          "FAMILY_NAME",
+          "GIVEN_NAME"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
+    },
     "p2preview606ca9ee606ca9ee": {
       "customAuth": false,
       "dependsOn": [],
@@ -30,5 +69,69 @@
       "service": "Cognito"
     }
   },
-  "function": {}
+  "function": {
+    "p2preview1bba5fc91bba5fc9PostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_p2preview1bba5fc91bba5fc9PostConfirmation_dbEndpoint": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "p2preview1bba5fc91bba5fc9PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_p2preview1bba5fc91bba5fc9PostConfirmation_dbName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "p2preview1bba5fc91bba5fc9PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_p2preview1bba5fc91bba5fc9PostConfirmation_dbPassword": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "p2preview1bba5fc91bba5fc9PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_p2preview1bba5fc91bba5fc9PostConfirmation_dbPort": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "p2preview1bba5fc91bba5fc9PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_p2preview1bba5fc91bba5fc9PostConfirmation_dbUser": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "p2preview1bba5fc91bba5fc9PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_p2preview1bba5fc91bba5fc9PostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "p2preview1bba5fc91bba5fc9PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_p2preview1bba5fc91bba5fc9PostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "p2preview1bba5fc91bba5fc9PostConfirmation"
+        }
+      ]
+    }
+  }
 }
