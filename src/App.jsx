@@ -5,6 +5,7 @@ import Header from './app/header/Header';
 import { Outlet } from 'react-router-dom';
 
 function App({ signOut, user }) {
+  console.log(user);
   return (
     <UserContext.Provider value={{ signOut: signOut, user: user }}>
       <Header />
