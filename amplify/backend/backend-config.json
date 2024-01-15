@@ -1,4 +1,20 @@
 {
+  "api": {
+    "p2previewapi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "userSettingsREST"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "p2preview1bba5fc91bba5fc9": {
       "customAuth": false,
@@ -38,39 +54,15 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
-    },
-    "p2preview606ca9ee606ca9ee": {
-      "customAuth": false,
-      "dependsOn": [],
-      "frontendAuthConfig": {
-        "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
-        "passwordProtectionSettings": {
-          "passwordPolicyCharacters": [],
-          "passwordPolicyMinLength": 8
-        },
-        "signupAttributes": [
-          "BIRTHDATE",
-          "EMAIL",
-          "FAMILY_NAME",
-          "GIVEN_NAME"
-        ],
-        "socialProviders": [],
-        "usernameAttributes": [
-          "EMAIL"
-        ],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
-      },
-      "providerPlugin": "awscloudformation",
-      "service": "Cognito"
     }
   },
   "function": {
     "p2preview1bba5fc91bba5fc9PostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "userSettingsREST": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -130,6 +122,62 @@
         {
           "category": "function",
           "resourceName": "p2preview1bba5fc91bba5fc9PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_userSettingsREST_dbEndpoint": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userSettingsREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userSettingsREST_dbName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userSettingsREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userSettingsREST_dbPassword": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userSettingsREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userSettingsREST_dbPort": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userSettingsREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userSettingsREST_dbUser": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userSettingsREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userSettingsREST_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userSettingsREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userSettingsREST_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userSettingsREST"
         }
       ]
     }
