@@ -43,7 +43,7 @@ export default function SettingsForm() {
         })
         .catch((error) => {
           console.log('Fetching specializations failed');
-          setError();
+          setFetchingError();
           console.log(error);
         });
     };
