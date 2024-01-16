@@ -36,7 +36,7 @@
           "dbPort": "5432",
           "dbUser": "postgres",
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/userSettingsREST-6373376c786447674165-build.zip"
+          "s3Key": "amplify-builds/userSettingsREST-5662317178626d4c5363-build.zip"
         }
       },
       "api": {

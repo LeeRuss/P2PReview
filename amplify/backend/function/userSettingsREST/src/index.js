@@ -64,6 +64,10 @@ exports.handler = async (event) => {
         if (!validateSpecializations(specializations)) {
           return {
             statusCode: 400,
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Headers': '*',
+            },
             body: JSON.stringify({ message: 'Invalid data in the request' }),
           };
         }
@@ -90,6 +94,10 @@ exports.handler = async (event) => {
     console.error('Error fetching records', error);
     return {
       statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
+      },
       body: JSON.stringify({ message: 'Internal Server Error' }),
     };
   } finally {

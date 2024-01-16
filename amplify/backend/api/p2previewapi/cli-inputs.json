@@ -5,12 +5,7 @@
       "name": "/userSettings",
       "lambdaFunction": "userSettingsREST",
       "permissions": {
-        "setting": "private",
-        "auth": [
-          "create",
-          "read",
-          "update"
-        ]
+        "setting": "open"
       }
     }
   }
