@@ -40,7 +40,7 @@ exports.handler = async (event) => {
 
     switch (event.httpMethod) {
       case 'GET': {
-        var query = {
+        const query = {
           text: 'SELECT specializations FROM p2preview.users WHERE uuid = $1;',
           values: [userUUID],
         };

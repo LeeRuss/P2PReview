@@ -7,6 +7,20 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/userWork": {
+      "name": "/userWork",
+      "lambdaFunction": "userWorkREST",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/work": {
+      "name": "/work",
+      "lambdaFunction": "workREST",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

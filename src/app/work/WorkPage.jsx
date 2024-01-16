@@ -11,38 +11,14 @@ import {
 } from '@mui/material';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import AddReview from '../review/AddReview';
 import WorkReviewsList from './WorkReviewsList';
+import { API } from 'aws-amplify';
+import { UserContext } from '../contexts/UserContext';
 
-const workObject = {
-  id: 0,
-  title: 'Work title',
-  shortDescription:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi nulla, rutrum ut velit quis, semper convallis sem. In tincidunt suscipit turpis, eget pulvinar lectus tincidunt laoreet. Quisque id posuere metus, ut interdum mi. Morbi id lectus a lacus ultricies pellentesque. Maecenas libero sapien, efficitur fringilla lectus quis, aliquam vulputate purus. Suspendisse aliquet nibh non condimentum luctus. Aenean tincidunt leo at imperdiet elementum.',
-  description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi nulla, rutrum ut velit quis, semper convallis sem. In tincidunt suscipit turpis, eget pulvinar lectus tincidunt laoreet. Quisque id posuere metus, ut interdum mi. Morbi id lectus a lacus ultricies pellentesque. Maecenas libero sapien, efficitur fringilla lectus quis, aliquam vulputate purus. Suspendisse aliquet nibh non condimentum luctus. Aenean tincidunt leo at imperdiet elementum.
-
-  Nullam tempor, odio a interdum hendrerit, tortor ipsum laoreet felis, eget laoreet ligula odio sed mauris. Quisque auctor magna fermentum tincidunt tempor. Etiam pretium est sed feugiat aliquet. Duis feugiat nec ex cursus gravida. Donec est urna, venenatis ut mattis sit amet, rutrum vitae turpis. Phasellus tortor nisl, rhoncus sit amet ex a, ultricies ornare quam. Vestibulum dictum eget lacus eu sollicitudin.
-  
-  Maecenas pretium a ligula a lobortis. Vestibulum eu molestie purus, vel ullamcorper libero. Duis rutrum felis at nibh fringilla posuere. Praesent sit amet metus enim. Integer bibendum vulputate arcu sit amet consequat. Etiam non ultrices urna. Sed pretium nisl non feugiat aliquam. Sed auctor felis augue, quis euismod mi sagittis eget. Donec eget quam orci. Etiam tincidunt, lectus non feugiat condimentum, sem ante ultrices libero, vitae varius ex ex et elit. Nullam in lectus in lectus lacinia efficitur mattis non erat.`,
-  department: 'Data Science',
-  advancement: 'Intermediate',
-  links: [
-    {
-      link: 'https://www.google.com/',
-      description:
-        'Link to google search engine which is most pupular search engine. ',
-    },
-    {
-      link: 'https://www.youtube.com/',
-      description:
-        'YouTube is a free video sharing website that makes it easy to watch online videos. You can even create and upload your own videos to share with others.',
-    },
-  ],
-  user: {
-    id: 1,
-  },
-};
+const myAPI = 'p2previewapi';
+const path = '/work/{proxy+}';
 
 export default function Work() {
   const theme = useTheme();
@@ -50,10 +26,32 @@ export default function Work() {
   const [work, setWork] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
-    setWork(workObject);
-    setLoading(false);
+    const getSpecializations = async () => {
+      const options = {
+        headers: {
+          Authorization: user.signInUserSession.idToken.jwtToken,
+        },
+        queryStringParameters: { workId: workId },
+      };
+      API.get(myAPI, path, options)
+        .then((response) => {
+          console.log('Fetching specializations succeeded');
+          setWork(response);
+        })
+        .catch((error) => {
+          console.log('Fetching specializations failed');
+          setError(true);
+          console.log(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    };
+
+    getSpecializations();
   }, []);
 
   return (
@@ -125,7 +123,7 @@ export default function Work() {
                   whiteSpace: 'pre-wrap',
                 }}
               >
-                {work.shortDescription}
+                {work.short_description}
               </Typography>
               <Divider
                 variant="middle"
@@ -149,49 +147,55 @@ export default function Work() {
               >
                 {work.description}
               </Typography>
-              <Divider
-                variant="middle"
-                flexItem
-                textAlign="left"
-                sx={{ mt: '1rem', mb: '1rem', borderWidth: '1.5px' }}
-              >
-                <Typography component="h2" variant="h5">
-                  Links
-                </Typography>
-              </Divider>
-              <List>
-                {work.links.map((link, index) => (
-                  <ListItem key={index} sx={{ flexDirection: 'column' }}>
-                    <Typography
-                      component="p"
-                      align="justify"
-                      sx={{
-                        alignSelf: 'flex-start',
-                        ml: '1rem',
-                        mr: '1rem',
-                        whiteSpace: 'pre-wrap',
-                      }}
-                    >
-                      • {link.description}
+              {work.links?.length > 0 && (
+                <>
+                  <Divider
+                    variant="middle"
+                    flexItem
+                    textAlign="left"
+                    sx={{ mt: '1rem', mb: '1rem', borderWidth: '1.5px' }}
+                  >
+                    <Typography component="h2" variant="h5">
+                      Links
                     </Typography>
-                    <Button
-                      href={link.link}
-                      target="_blank"
-                      variant="contained"
-                      endIcon={<OpenInNewIcon />}
-                      sx={{
-                        alignSelf: 'flex-end',
-                        mr: '1rem',
-                        mt: '1rem',
-                        mb: '1rem',
-                      }}
-                    >
-                      <b>{link.link}</b>
-                    </Button>
-                  </ListItem>
-                ))}
-              </List>
-              {work.user.id === 1 ? <WorkReviewsList /> : <AddReview />}
+                  </Divider>
+                  <List sx={{ width: '100%' }}>
+                    {work.links.map((link, index) => (
+                      <ListItem key={index} sx={{ flexDirection: 'column' }}>
+                        <Typography
+                          component="p"
+                          align="justify"
+                          sx={{
+                            alignSelf: 'flex-start',
+                            ml: '1rem',
+                            mr: '1rem',
+                            whiteSpace: 'pre-wrap',
+                          }}
+                        >
+                          • {link.description}
+                        </Typography>
+                        <Button
+                          href={link.link}
+                          target="_blank"
+                          variant="contained"
+                          endIcon={<OpenInNewIcon />}
+                          sx={{
+                            alignSelf: 'flex-end',
+                            mr: '1rem',
+                            mt: '1rem',
+                            mb: '1rem',
+                            maxWidth: '40%',
+                            wordBreak: 'break-word',
+                          }}
+                        >
+                          <b>{link.link}</b>
+                        </Button>
+                      </ListItem>
+                    ))}
+                  </List>
+                  {work.user_id === 3 ? <WorkReviewsList /> : <AddReview />}
+                </>
+              )}
             </>
           )}
 

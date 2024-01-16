@@ -43,7 +43,7 @@ export default function SettingsForm() {
         })
         .catch((error) => {
           console.log('Fetching specializations failed');
-          setError();
+          setFetchingError();
           console.log(error);
         });
     };
@@ -61,6 +61,7 @@ export default function SettingsForm() {
   };
 
   const saveChanges = () => {
+    setIsLoading(true);
     let specializations = { beginner: [], intermediate: [], advanced: [] };
     specializations.beginner = selectedBeginner;
     specializations.intermediate = selectedIntermediate;
@@ -82,6 +83,7 @@ export default function SettingsForm() {
         console.log(error);
       })
       .finally(() => {
+        setIsLoading(false);
         setUploadingEnded(true);
       });
   };

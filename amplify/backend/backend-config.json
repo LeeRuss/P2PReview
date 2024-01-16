@@ -9,6 +9,22 @@
           ],
           "category": "function",
           "resourceName": "userSettingsREST"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "userWorkREST"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "workREST"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -63,6 +79,17 @@
       "service": "Lambda"
     },
     "userSettingsREST": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "userWorkREST": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "workREST": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -178,6 +205,118 @@
         {
           "category": "function",
           "resourceName": "userSettingsREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userWorkREST_dbEndpoint": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userWorkREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userWorkREST_dbName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userWorkREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userWorkREST_dbPassword": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userWorkREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userWorkREST_dbPort": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userWorkREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userWorkREST_dbUser": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userWorkREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userWorkREST_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userWorkREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userWorkREST_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userWorkREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_workREST_dbEndpoint": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "workREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_workREST_dbName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "workREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_workREST_dbPassword": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "workREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_workREST_dbPort": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "workREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_workREST_dbUser": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "workREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_workREST_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "workREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_workREST_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "workREST"
         }
       ]
     }
