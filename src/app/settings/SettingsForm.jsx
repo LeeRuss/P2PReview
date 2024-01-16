@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {
   FormControl,
   InputLabel,
@@ -6,13 +6,43 @@ import {
   MenuItem,
   Button,
 } from '@mui/material';
-
+import { API } from 'aws-amplify';
+import { UserContext } from '../contexts/UserContext';
 import specializationList from './specializations.json';
+
+const myAPI = 'p2previewapi';
+const path = '/userSettings';
 
 export default function SettingsForm() {
   const [selectedBeginner, setSelectedBeginner] = useState([]);
   const [selectedIntermediate, setSelectedIntermediate] = useState([]);
   const [selectedAdvanced, setSelectedAdvanced] = useState([]);
+  const { user } = useContext(UserContext);
+  useEffect(() => {
+    const getSpecializations = async () => {
+      const options = {
+        headers: {
+          Authorization: user.signInUserSession.idToken.jwtToken,
+        },
+      };
+
+      API.get(myAPI, path, options)
+        .then((response) => {
+          console.log(response);
+          let specializations = response.specializations;
+          setSelectedBeginner(specializations.beginner);
+          setSelectedIntermediate(specializations.intermediate);
+          setSelectedAdvanced(specializations.advanced);
+          console.log('Fetching specializations succeeded');
+          console.log(specializations);
+        })
+        .catch((error) => {
+          console.log('Fetching specializations failed');
+          console.log(error);
+        });
+    };
+    getSpecializations();
+  }, []);
 
   const handleBeginner = (event) => {
     setSelectedBeginner(event.target.value);
@@ -25,7 +55,25 @@ export default function SettingsForm() {
   };
 
   const saveChanges = () => {
-    //send data to server
+    let specializations = { beginner: [], intermediate: [], advanced: [] };
+    specializations.beginner = selectedBeginner;
+    specializations.intermediate = selectedIntermediate;
+    specializations.advanced = selectedAdvanced;
+    const options = {
+      headers: {
+        Authorization: user.signInUserSession.idToken.jwtToken,
+      },
+      body: specializations,
+    };
+    API.put(myAPI, path, options)
+      .then((response) => {
+        console.log('Uploading specializations succeeded');
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log('Uploading specializations failed');
+        console.log(error);
+      });
   };
 
   return (
