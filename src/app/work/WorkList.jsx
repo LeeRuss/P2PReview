@@ -13,7 +13,12 @@ export default function WorkList({ workList }) {
   return workList.map((work, index) => (
     <Accordion
       key={index}
-      sx={{ mb: '1rem', borderRadius: '4px', ': before': { content: 'none' } }}
+      sx={{
+        mb: '1rem',
+        borderRadius: '4px',
+        ': before': { content: 'none' },
+        width: '100%',
+      }}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
@@ -39,7 +44,7 @@ export default function WorkList({ workList }) {
         >{`${work.department} - ${work.advancement}`}</Typography>
       </AccordionSummary>
       <AccordionDetails sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Typography textAlign="justify">{work.shortDescription}</Typography>
+        <Typography textAlign="justify">{work.short_description}</Typography>
         <Button
           component={Link}
           to={`/work/${work.id}`}

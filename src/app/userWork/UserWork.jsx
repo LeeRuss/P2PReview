@@ -9,52 +9,43 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import WorkList from '../work/WorkList';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { API } from 'aws-amplify';
+import { UserContext } from '../contexts/UserContext';
 
-const workListExample = [
-  {
-    id: 0,
-    title: 'Example Title 1',
-    department: 'Data Science',
-    advancement: 'Intermediate',
-    shortDescription:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi nulla, rutrum ut velit quis, semper convallis sem. In tincidunt suscipit turpis, eget pulvinar lectus tincidunt laoreet. Quisque id posuere metus, ut interdum mi. Morbi id lectus a lacus ultricies pellentesque. Maecenas libero sapien, efficitur fringilla lectus quis, aliquam vulputate purus. Suspendisse aliquet nibh non condimentum luctus. Aenean tincidunt leo at imperdiet elementum.',
-  },
-  {
-    id: 1,
-    title: 'Example Title 2',
-    department: 'Webdev',
-    advancement: 'Beginner',
-    shortDescription:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi nulla, rutrum ut velit quis, semper convallis sem. In tincidunt suscipit turpis, eget pulvinar lectus tincidunt laoreet. Quisque id posuere metus, ut interdum mi. Morbi id lectus a lacus ultricies pellentesque. Maecenas libero sapien, efficitur fringilla lectus quis, aliquam vulputate purus. Suspendisse aliquet nibh non condimentum luctus. Aenean tincidunt leo at imperdiet elementum.',
-  },
-  {
-    id: 3,
-    title: 'Example Title 4',
-    department: 'Data Science',
-    advancement: 'Intermediate',
-    shortDescription:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi nulla, rutrum ut velit quis, semper convallis sem. In tincidunt suscipit turpis, eget pulvinar lectus tincidunt laoreet. Quisque id posuere metus, ut interdum mi. Morbi id lectus a lacus ultricies pellentesque. Maecenas libero sapien, efficitur fringilla lectus quis, aliquam vulputate purus. Suspendisse aliquet nibh non condimentum luctus. Aenean tincidunt leo at imperdiet elementum.',
-  },
-  {
-    id: 4,
-    title: 'Example Title 5',
-    department: 'Webdev',
-    advancement: 'Beginner',
-    shortDescription:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi nulla, rutrum ut velit quis, semper convallis sem. In tincidunt suscipit turpis, eget pulvinar lectus tincidunt laoreet. Quisque id posuere metus, ut interdum mi. Morbi id lectus a lacus ultricies pellentesque. Maecenas libero sapien, efficitur fringilla lectus quis, aliquam vulputate purus. Suspendisse aliquet nibh non condimentum luctus. Aenean tincidunt leo at imperdiet elementum.',
-  },
-];
+const myAPI = 'p2previewapi';
+const path = '/userWork';
 
 export default function UserWork() {
   const theme = useTheme();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [workList, setWorkList] = useState(null);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
-    setWorkList(workListExample);
-    setLoading(false);
+    const getSpecializations = async () => {
+      const options = {
+        headers: {
+          Authorization: user.signInUserSession.idToken.jwtToken,
+        },
+      };
+      API.get(myAPI, path, options)
+        .then((response) => {
+          console.log('Fetching specializations succeeded');
+          setWorkList(response);
+        })
+        .catch((error) => {
+          console.log('Fetching specializations failed');
+          setError(true);
+          console.log(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    };
+
+    getSpecializations();
   }, []);
 
   return (
