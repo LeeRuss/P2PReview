@@ -36,7 +36,25 @@
           "dbPort": "5432",
           "dbUser": "postgres",
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/userSettingsREST-5662317178626d4c5363-build.zip"
+          "s3Key": "amplify-builds/userSettingsREST-36707556584d6f7a5773-build.zip"
+        },
+        "userWorkREST": {
+          "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
+          "dbName": "postgres",
+          "dbPassword": "AvAtAr!2",
+          "dbPort": "5432",
+          "dbUser": "postgres",
+          "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
+          "s3Key": "amplify-builds/userWorkREST-37516e51613042324e53-build.zip"
+        },
+        "workREST": {
+          "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
+          "s3Key": "amplify-builds/workREST-62786e596c2b55796956-build.zip",
+          "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
+          "dbName": "postgres",
+          "dbPassword": "AvAtAr!2",
+          "dbPort": "5432",
+          "dbUser": "postgres"
         }
       },
       "api": {
