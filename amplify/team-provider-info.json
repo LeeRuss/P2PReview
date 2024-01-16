@@ -10,24 +10,37 @@
       "StackName": "amplify-p2preview-dev-160151",
       "StackId": "arn:aws:cloudformation:eu-central-1:681139224454:stack/amplify-p2preview-dev-160151/e1cf96c0-7e47-11ee-9e6a-02349380763f",
       "AmplifyAppId": "dz5lqw3sy00vf",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-p2preview-dev-160151-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-p2preview-dev-160151-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-p2preview-dev-160151-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "p2preview157574ac": {},
-        "p2preview606ca9ee606ca9ee": {},
         "p2preview1bba5fc91bba5fc9": {}
       },
       "function": {
         "p2preview1bba5fc91bba5fc9PostConfirmation": {
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/p2preview1bba5fc91bba5fc9PostConfirmation-664d51574d34784b6c75-build.zip",
+          "s3Key": "amplify-builds/p2preview1bba5fc91bba5fc9PostConfirmation-67774b776b4765323872-build.zip",
           "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
           "dbPort": "5432",
           "dbUser": "postgres",
           "dbPassword": "AvAtAr!2",
           "dbName": "postgres"
+        },
+        "getUserSettings": {},
+        "userSettingsREST": {
+          "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
+          "dbName": "postgres",
+          "dbPassword": "AvAtAr!2",
+          "dbPort": "5432",
+          "dbUser": "postgres",
+          "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
+          "s3Key": "amplify-builds/userSettingsREST-5662317178626d4c5363-build.zip"
         }
+      },
+      "api": {
+        "p2previewapi": {}
       }
     }
   }

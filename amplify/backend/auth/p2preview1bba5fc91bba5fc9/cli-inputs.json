@@ -1,6 +1,8 @@
 {
   "version": "1",
   "cognitoConfig": {
+    "identityPoolName": "p2preview1bba5fc91bba5fc9_identitypool_8befa1c4",
+    "allowUnauthenticatedIdentities": false,
     "resourceNameTruncated": "p2prev1bba5fc9",
     "userPoolName": "p2preview1bba5fc9_userpool_1bba5fc9",
     "autoVerifiedAttributes": [
@@ -36,7 +38,7 @@
     "userpoolClientSetAttributes": false,
     "sharedId": "1bba5fc9",
     "resourceName": "p2preview1bba5fc91bba5fc9",
-    "authSelections": "userPoolOnly",
+    "authSelections": "identityPoolAndUserPool",
     "useDefault": "manual",
     "usernameAttributes": [
       "email"
@@ -52,6 +54,34 @@
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true
+    "useEnabledMfas": true,
+    "authRoleArn": {
+      "Fn::GetAtt": [
+        "AuthRole",
+        "Arn"
+      ]
+    },
+    "unauthRoleArn": {
+      "Fn::GetAtt": [
+        "UnauthRole",
+        "Arn"
+      ]
+    },
+    "breakCircularDependency": true,
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "p2preview1bba5fc91bba5fc9PostConfirmation",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      }
+    ],
+    "permissions": [],
+    "authTriggerConnections": [
+      "{\"triggerType\":\"PostConfirmation\",\"lambdaFunctionName\":\"p2preview1bba5fc91bba5fc9PostConfirmation\"}"
+    ]
   }
 }
