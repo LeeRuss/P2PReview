@@ -26,19 +26,23 @@ export default function ReviewList({ reviewList, isUserWorkAuthor }) {
           },
         }}
       >
-        <Rating value={review.rating} readOnly></Rating>
+        <Rating
+          value={review.mark}
+          readOnly
+          sx={{ mr: '1rem', alignSelf: 'center' }}
+        />
         {!isUserWorkAuthor ? (
           <Typography
             component="p"
             variant="subtitle1"
             sx={{ alignSelf: 'flex-end' }}
-          >{`${review.work.title} - ${review.work.department}`}</Typography>
+          >{`${review.work_title} - ${review.department}`}</Typography>
         ) : (
           <Typography
             component="p"
             variant="subtitle1"
             sx={{ alignSelf: 'flex-end' }}
-          >{`${review.user.name} - ${review.user.advancement}`}</Typography>
+          >{`${review.user_name}, ${review.user_age} - ${review.user_advancement}`}</Typography>
         )}
       </AccordionSummary>
       <AccordionDetails sx={{ display: 'flex', flexDirection: 'column' }}>
@@ -46,7 +50,7 @@ export default function ReviewList({ reviewList, isUserWorkAuthor }) {
         {!isUserWorkAuthor && (
           <Button
             component={Link}
-            to={`/work/${review.work.id}`}
+            to={`/work/${review.work_id}`}
             variant="contained"
             endIcon={<OpenInNewIcon />}
             sx={{ alignSelf: 'flex-end' }}

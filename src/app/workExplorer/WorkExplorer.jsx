@@ -3,11 +3,9 @@ import {
   Paper,
   Typography,
   Divider,
-  Button,
   CircularProgress,
   useTheme,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 import WorkList from '../work/WorkList';
 import { useState, useEffect, useContext } from 'react';
 import { API } from 'aws-amplify';
@@ -22,7 +20,6 @@ export default function UserWork() {
   const [error, setError] = useState(false);
   const [workList, setWorkList] = useState(null);
   const { user } = useContext(UserContext);
-  console.log(error.response?.data?.message);
 
   useEffect(() => {
     const getSpecializations = async () => {
@@ -34,7 +31,6 @@ export default function UserWork() {
       API.get(myAPI, path, options)
         .then((response) => {
           console.log('Fetching specializations succeeded');
-          console.log(response);
           setWorkList(response);
         })
         .catch((error) => {

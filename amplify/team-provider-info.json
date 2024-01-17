@@ -49,7 +49,7 @@
         },
         "workREST": {
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/workREST-70774572565453794830-build.zip",
+          "s3Key": "amplify-builds/workREST-70537573367a73772b61-build.zip",
           "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
           "dbName": "postgres",
           "dbPassword": "AvAtAr!2",
@@ -63,15 +63,25 @@
           "dbPort": "5432",
           "dbUser": "postgres",
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/proposedWorksREST-535173554f544e746d63-build.zip"
+          "s3Key": "amplify-builds/proposedWorksREST-526259384430374a7477-build.zip"
         },
         "userReviewsREST": {
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/userReviewsREST-38426d4d644454503769-build.zip"
+          "s3Key": "amplify-builds/userReviewsREST-4f4475622f482b694a69-build.zip",
+          "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
+          "dbName": "postgres",
+          "dbPassword": "AvAtAr!2",
+          "dbPort": "5432",
+          "dbUser": "postgres"
         },
         "reviewREST": {
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/reviewREST-46396735443672647144-build.zip"
+          "s3Key": "amplify-builds/reviewREST-2f764a7637457a476b74-build.zip",
+          "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
+          "dbName": "postgres",
+          "dbPassword": "AvAtAr!2",
+          "dbPort": "5432",
+          "dbUser": "postgres"
         }
       },
       "api": {
