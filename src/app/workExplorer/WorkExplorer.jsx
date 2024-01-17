@@ -3,11 +3,9 @@ import {
   Paper,
   Typography,
   Divider,
-  Button,
   CircularProgress,
   useTheme,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 import WorkList from '../work/WorkList';
 import { useState, useEffect, useContext } from 'react';
 import { API } from 'aws-amplify';
