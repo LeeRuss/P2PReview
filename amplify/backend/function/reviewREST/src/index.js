@@ -100,10 +100,8 @@ exports.handler = async (event) => {
           ) {
             record.user_advancement = 'beginner';
             delete record.user_specializations;
-            return;
-          }
+          } else record.user_advancement = 'unknown';
           delete record.user_specializations;
-          record.user_advancement = 'unknown';
         });
         return {
           statusCode: 200,
