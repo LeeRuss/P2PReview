@@ -35,7 +35,6 @@ export default function AddReview() {
   } = useForm();
 
   function onSubmit(data) {
-    console.log(data);
     data.workId = parseInt(workId);
     data.mark = parseFloat(data.mark);
     const options = {
@@ -49,7 +48,6 @@ export default function AddReview() {
     API.put(myAPI, path, options)
       .then((response) => {
         console.log('Uploading work succeeded');
-        console.log(JSON.stringify(response));
         setUploadSuccess(true);
       })
       .catch((error) => {
