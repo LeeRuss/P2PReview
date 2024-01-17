@@ -25,6 +25,30 @@
           ],
           "category": "function",
           "resourceName": "workREST"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "proposedWorksREST"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "userReviewsREST"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "reviewREST"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -74,6 +98,21 @@
   },
   "function": {
     "p2preview1bba5fc91bba5fc9PostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "proposedWorksREST": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "reviewREST": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "userReviewsREST": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -149,6 +188,94 @@
         {
           "category": "function",
           "resourceName": "p2preview1bba5fc91bba5fc9PostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_proposedWorksREST_dbEndpoint": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "proposedWorksREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_proposedWorksREST_dbName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "proposedWorksREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_proposedWorksREST_dbPassword": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "proposedWorksREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_proposedWorksREST_dbPort": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "proposedWorksREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_proposedWorksREST_dbUser": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "proposedWorksREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_proposedWorksREST_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "proposedWorksREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_proposedWorksREST_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "proposedWorksREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reviewREST_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reviewREST_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userReviewsREST_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userReviewsREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userReviewsREST_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userReviewsREST"
         }
       ]
     },

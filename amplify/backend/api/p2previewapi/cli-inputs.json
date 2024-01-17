@@ -21,6 +21,27 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/proposedWorks": {
+      "name": "/proposedWorks",
+      "lambdaFunction": "proposedWorksREST",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/userReviews": {
+      "name": "/userReviews",
+      "lambdaFunction": "userReviewsREST",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/review": {
+      "name": "/review",
+      "lambdaFunction": "reviewREST",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }
