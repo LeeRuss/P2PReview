@@ -303,6 +303,46 @@
         }
       ]
     },
+    "AMPLIFY_function_userReviewsREST_dbEndpoint": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userReviewsREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userReviewsREST_dbName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userReviewsREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userReviewsREST_dbPassword": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userReviewsREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userReviewsREST_dbPort": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userReviewsREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_userReviewsREST_dbUser": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userReviewsREST"
+        }
+      ]
+    },
     "AMPLIFY_function_userReviewsREST_deploymentBucketName": {
       "usedBy": [
         {
