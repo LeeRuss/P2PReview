@@ -20,7 +20,6 @@ export default function UserReviews() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const { user } = useContext(UserContext);
-  console.log(reviewList);
 
   useEffect(() => {
     const getSpecializations = async () => {
