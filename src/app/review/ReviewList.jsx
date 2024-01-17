@@ -26,7 +26,11 @@ export default function ReviewList({ reviewList, isUserWorkAuthor }) {
           },
         }}
       >
-        <Rating value={review.mark} readOnly></Rating>
+        <Rating
+          value={review.mark}
+          readOnly
+          sx={{ mr: '1rem', alignSelf: 'center' }}
+        />
         {!isUserWorkAuthor ? (
           <Typography
             component="p"
