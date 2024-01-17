@@ -36,7 +36,7 @@ export default function ReviewList({ reviewList, isUserWorkAuthor }) {
             component="p"
             variant="subtitle1"
             sx={{ alignSelf: 'flex-end' }}
-          >{`${review.work_title} - ${review.work_department}`}</Typography>
+          >{`${review.work_title} - ${review.department}`}</Typography>
         ) : (
           <Typography
             component="p"
