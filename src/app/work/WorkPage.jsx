@@ -29,7 +29,7 @@ export default function Work() {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
-    const getSpecializations = async () => {
+    const getWork = async () => {
       const options = {
         headers: {
           Authorization: user.signInUserSession.idToken.jwtToken,
@@ -38,11 +38,11 @@ export default function Work() {
       };
       API.get(myAPI, path, options)
         .then((response) => {
-          console.log('Fetching specializations succeeded');
+          console.log('Fetching work succeeded');
           setWork(response);
         })
         .catch((error) => {
-          console.log('Fetching specializations failed');
+          console.log('Fetching work failed');
           setError(true);
           console.log(error);
         })
@@ -51,7 +51,7 @@ export default function Work() {
         });
     };
 
-    getSpecializations();
+    getWork();
   }, []);
 
   return (
@@ -193,8 +193,18 @@ export default function Work() {
                       </ListItem>
                     ))}
                   </List>
-                  {work.user_id === 3 ? <WorkReviewsList /> : <AddReview />}
                 </>
+              )}
+              <Divider
+                variant="middle"
+                flexItem
+                textAlign="left"
+                sx={{ mt: '1rem', mb: '1rem', borderWidth: '1.5px' }}
+              />
+              {work.user_uuid === user.attributes.sub ? (
+                <WorkReviewsList />
+              ) : (
+                <AddReview />
               )}
             </>
           )}

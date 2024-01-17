@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {
   Button,
   Dialog,
@@ -12,69 +12,45 @@ import {
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import ReviewList from '../review/ReviewList';
+import { API } from 'aws-amplify';
+import { UserContext } from '../contexts/UserContext';
 
-const reviewListExample = [
-  {
-    id: 1,
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi nulla, rutrum ut velit quis, semper convallis sem. In tincidunt suscipit turpis, eget pulvinar lectus tincidunt laoreet. Quisque id posuere metus, ut interdum mi. Morbi id lectus a lacus ultricies pellentesque. Maecenas libero sapien, efficitur fringilla lectus quis, aliquam vulputate purus. Suspendisse aliquet nibh non condimentum luctus. Aenean tincidunt leo at imperdiet elementum.',
-    rating: 2.5,
-    work: {
-      id: 0,
-      title: 'Example title',
-      department: 'Data science',
-    },
-    user: {
-      id: 0,
-      advancement: 'Beginner',
-      name: 'Alex',
-    },
-  },
-  {
-    id: 2,
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi nulla, rutrum ut velit quis, semper convallis sem. In tincidunt suscipit turpis, eget pulvinar lectus tincidunt laoreet. Quisque id posuere metus, ut interdum mi. Morbi id lectus a lacus ultricies pellentesque. Maecenas libero sapien, efficitur fringilla lectus quis, aliquam vulputate purus. Suspendisse aliquet nibh non condimentum luctus. Aenean tincidunt leo at imperdiet elementum.',
-    rating: 5,
-    work: {
-      id: 0,
-      title: 'Example title',
-      department: 'Data science',
-    },
-    user: {
-      id: 1,
-      advancement: 'Intermediate',
-      name: 'Lisa',
-    },
-  },
-  {
-    id: 3,
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi nulla, rutrum ut velit quis, semper convallis sem. In tincidunt suscipit turpis, eget pulvinar lectus tincidunt laoreet. Quisque id posuere metus, ut interdum mi. Morbi id lectus a lacus ultricies pellentesque. Maecenas libero sapien, efficitur fringilla lectus quis, aliquam vulputate purus. Suspendisse aliquet nibh non condimentum luctus. Aenean tincidunt leo at imperdiet elementum.',
-    rating: 3.5,
-    work: {
-      id: 0,
-      title: 'Example title',
-      department: 'Data science',
-    },
-    user: {
-      id: 2,
-      advancement: 'Advanced',
-      name: 'Patrick',
-    },
-  },
-];
+const myAPI = 'p2previewapi';
+const path = '/review/{proxy+}';
 
 export default function WorkReviewsList() {
   const theme = useTheme();
   const { workId } = useParams();
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [reviewList, setReviewList] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [reviewList, setWorkList] = useState(null);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
-    setWorkList(reviewListExample);
-    setLoading(false);
+    const getReviews = async () => {
+      const options = {
+        headers: {
+          Authorization: user.signInUserSession.idToken.jwtToken,
+        },
+        queryStringParameters: { workId: workId },
+      };
+      API.get(myAPI, path, options)
+        .then((response) => {
+          console.log('Fetching review succeeded');
+          setReviewList(response);
+        })
+        .catch((error) => {
+          console.log('Fetching review failed');
+          setError(true);
+          console.log(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    };
+
+    getReviews();
   }, []);
 
   function handleClose() {
@@ -105,7 +81,7 @@ export default function WorkReviewsList() {
         <DialogTitle>Reviews of current work</DialogTitle>
         <DialogContent>
           {loading && <CircularProgress size="5.5rem"></CircularProgress>}
-          {!!reviewList && (
+          {Array.isArray(reviewList) && (
             <ReviewList reviewList={reviewList} isUserWorkAuthor={true} />
           )}
           {!!error && (
