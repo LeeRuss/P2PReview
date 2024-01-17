@@ -63,7 +63,7 @@
           "dbPort": "5432",
           "dbUser": "postgres",
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/proposedWorksREST-387a5739623753615269-build.zip"
+          "s3Key": "amplify-builds/proposedWorksREST-526259384430374a7477-build.zip"
         },
         "userReviewsREST": {
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
@@ -76,7 +76,7 @@
         },
         "reviewREST": {
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/reviewREST-764a3459314666647648-build.zip",
+          "s3Key": "amplify-builds/reviewREST-2f764a7637457a476b74-build.zip",
           "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
           "dbName": "postgres",
           "dbPassword": "AvAtAr!2",

@@ -35,11 +35,11 @@ exports.handler = async (event) => {
         specializations.advanced.length != 0
       ) {
         query = {
-          text: `SELECT  works.id, works.title, works.short_description, works.department, works.advancement 
-                FROM    p2preview.works works
-                            LEFT JOIN p2preview.reviews reviews
-                                on works.id = reviews.work_id
-                WHERE   works.user_id != $1 AND (reviews.user_id IS DISTINCT FROM $1 AND reviews.work_id IS DISTINCT FROM works.id);`,
+          text: `SELECT works.id, works.title, works.short_description, works.department, works.advancement, COUNT(reviews.id) AS reviews_count
+          FROM p2preview.works
+          LEFT JOIN p2preview.reviews ON p2preview.works.id = p2preview.reviews.work_id
+          WHERE works.user_id != $1 AND (p2preview.reviews.work_id IS NULL OR (p2preview.reviews.work_id IS NOT NULL AND p2preview.reviews.user_id != $1 ))
+          GROUP BY works.id;`,
           values: [id],
         };
         result = await db.query(query);
@@ -49,6 +49,9 @@ exports.handler = async (event) => {
           if (record.advancement === 'advanced') {
             if (specializations.advanced.includes(record.department)) {
               record.score = 15;
+              if (record.reviews_count == 0) {
+                record.score += 15;
+              } else if (record.reviews_count < 6) record.score += 5;
               return true;
             }
             return false;
@@ -60,9 +63,11 @@ exports.handler = async (event) => {
               specializations.intermediate.includes(record.department)
             ) {
               record.score = 10;
+              if (record.reviews_count == 0) {
+                record.score += 15;
+              } else if (record.reviews_count < 6) record.score += 5;
               return true;
             }
-            return false;
           }
 
           if (record.advancement === 'beginner') {
@@ -72,12 +77,16 @@ exports.handler = async (event) => {
               specializations.beginner.includes(record.department)
             ) {
               record.score = 5;
+              if (record.reviews_count == 0) {
+                record.score += 15;
+              } else if (record.reviews_count < 6) record.score += 5;
               return true;
             }
             return false;
           }
         });
         result.sort((a, b) => a.score - b.score);
+        result = result.slice(0, 15); //slice rest of records to force user to review something and stop looking forever for more interesting reviews
         return {
           statusCode: 200,
           //  Uncomment below to enable CORS requests
