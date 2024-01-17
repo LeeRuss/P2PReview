@@ -37,11 +37,9 @@ exports.handler = async (event) => {
         query = {
           text: `SELECT  works.id, works.title, works.short_description, works.department, works.advancement 
                 FROM    p2preview.works works
-                            LEFT JOIN p2preview.users users
-                                on works.user_id = users.id
                             LEFT JOIN p2preview.reviews reviews
-                                on works.user_id = reviews.work_id
-                WHERE   works.user_id != $1 OR (reviews.user_id !=  $1 AND reviews.work_id = works.id);`,
+                                on works.id = reviews.work_id
+                WHERE   works.user_id != $1 AND (reviews.user_id IS DISTINCT FROM $1 AND reviews.work_id IS DISTINCT FROM works.id);`,
           values: [id],
         };
         result = await db.query(query);

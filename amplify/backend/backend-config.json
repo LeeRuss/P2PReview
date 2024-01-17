@@ -247,6 +247,46 @@
         }
       ]
     },
+    "AMPLIFY_function_reviewREST_dbEndpoint": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reviewREST_dbName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reviewREST_dbPassword": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reviewREST_dbPort": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reviewREST_dbUser": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewREST"
+        }
+      ]
+    },
     "AMPLIFY_function_reviewREST_deploymentBucketName": {
       "usedBy": [
         {
