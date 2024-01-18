@@ -85,7 +85,7 @@ exports.handler = async (event) => {
             return false;
           }
         });
-        result.sort((a, b) => a.score - b.score);
+        result.sort((a, b) => b.score - a.score);
         result = result.slice(0, 15); //slice rest of records to force user to review something and stop looking forever for more interesting reviews
         return {
           statusCode: 200,

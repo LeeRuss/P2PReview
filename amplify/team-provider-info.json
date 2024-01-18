@@ -63,7 +63,7 @@
           "dbPort": "5432",
           "dbUser": "postgres",
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/proposedWorksREST-526259384430374a7477-build.zip"
+          "s3Key": "amplify-builds/proposedWorksREST-3830734466672b613571-build.zip"
         },
         "userReviewsREST": {
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
