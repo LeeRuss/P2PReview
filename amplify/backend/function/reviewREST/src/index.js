@@ -113,7 +113,7 @@ exports.handler = async (event) => {
           body: JSON.stringify(reviews),
         };
       }
-      case 'PUT': {
+      case 'POST': {
         const data = JSON.parse(event.body);
 
         if (!validateData(data)) {

@@ -45,7 +45,7 @@ export default function AddReview() {
     };
     setUploading(true);
     setUploadingEnded(false);
-    API.put(myAPI, path, options)
+    API.post(myAPI, path, options)
       .then((response) => {
         console.log('Uploading work succeeded');
         setUploadSuccess(true);

@@ -52,7 +52,7 @@ export default function AddWorkForm() {
     };
     setUploading(true);
     setUploadingEnded(false);
-    API.put(myAPI, path, options)
+    API.post(myAPI, path, options)
       .then((response) => {
         console.log('Uploading work succeeded');
         console.log(JSON.stringify(response));
