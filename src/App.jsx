@@ -19,21 +19,27 @@ const formFields = {
   signUp: {
     email: {
       order: 1,
+      isRequired: true,
     },
     family_name: {
       order: 2,
+      isRequired: true,
     },
     given_name: {
       order: 3,
+      isRequired: true,
     },
     birthdate: {
       order: 4,
+      isRequired: true,
     },
     password: {
       order: 5,
+      isRequired: true,
     },
     confirm_password: {
       order: 6,
+      isRequired: true,
     },
   },
 };
