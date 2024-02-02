@@ -5,6 +5,7 @@ import {
   ListItemAvatar,
   Avatar,
   Typography,
+  Divider,
 } from '@mui/material';
 
 export default function ReviewersList(reviewersList) {
@@ -12,7 +13,14 @@ export default function ReviewersList(reviewersList) {
   return (
     <List sx={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
       {reviewersList.map((reviewer, index) => (
-        <ListItem key={index} sx={{ width: '50%', alignSelf: 'center' }}>
+        <ListItem
+          key={index}
+          sx={{
+            width: '50%',
+            alignSelf: 'center',
+            borderBottom: 'solid 1px rgba(0, 0, 0, 0.12)',
+          }}
+        >
           <ListItemAvatar>
             <Avatar
               sx={{
