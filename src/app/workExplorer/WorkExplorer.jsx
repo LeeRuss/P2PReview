@@ -14,7 +14,7 @@ import { UserContext } from '../contexts/UserContext';
 const myAPI = 'p2previewapi';
 const path = '/proposedWorks';
 
-export default function UserWork() {
+export default function WorkExplorer() {
   const theme = useTheme();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);

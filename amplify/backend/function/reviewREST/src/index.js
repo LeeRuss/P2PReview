@@ -87,7 +87,7 @@ exports.handler = async (event) => {
           values: [workID],
         };
         result = await db.query(query);
-        const department = result.rows[0];
+        const department = result.rows[0].department;
         reviews.forEach((record) => {
           if (record.user_specializations.advanced.includes(department)) {
             record.user_advancement = 'advanced';
@@ -99,7 +99,6 @@ exports.handler = async (event) => {
             record.user_specializations.beginner.includes(department)
           ) {
             record.user_advancement = 'beginner';
-            delete record.user_specializations;
           } else record.user_advancement = 'unknown';
           delete record.user_specializations;
         });
