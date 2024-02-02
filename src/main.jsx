@@ -12,6 +12,7 @@ import UserWork from './app/userWork/UserWork.jsx';
 import UserReviews from './app/userReviews/UserReviews.jsx';
 import AddWork from './app/userWork/AddWork.jsx';
 import WorkPage from './app/work/WorkPage.jsx';
+import ReviewersRanking from './app/reviewersRanking/ReviewersRanking.jsx';
 
 Amplify.configure(awsExports);
 
@@ -24,6 +25,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/yourWork" element={<UserWork />}></Route>
           <Route path="/addWork" element={<AddWork />}></Route>
           <Route path="/yourReviews" element={<UserReviews />}></Route>
+          <Route
+            path="/reviewersRanking"
+            element={<ReviewersRanking />}
+          ></Route>
           <Route path="/settings" element={<Settings />}></Route>
           <Route path="/work/:workId" element={<WorkPage />}></Route>
         </Route>

@@ -112,6 +112,13 @@ export default function Header() {
               >
                 <Typography textAlign="center">Your reviews</Typography>
               </MenuItem>
+              <MenuItem
+                component={RouterLink}
+                to="/reviewersRanking"
+                onClick={handleCloseNavMenu}
+              >
+                <Typography textAlign="center">Reviewers ranking</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Button
@@ -149,6 +156,13 @@ export default function Header() {
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
               Your reviews
+            </Button>
+            <Button
+              component={RouterLink}
+              to="/reviewersRanking"
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Reviewers ranking
             </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
