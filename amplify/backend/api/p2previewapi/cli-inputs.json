@@ -42,6 +42,20 @@
       "permissions": {
         "setting": "open"
       }
+    },
+    "/reviewersRanking/{department}": {
+      "name": "/reviewersRanking/{department}",
+      "lambdaFunction": "reviewersRankingREST",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/report": {
+      "name": "/report",
+      "lambdaFunction": "reportREST",
+      "permissions": {
+        "setting": "open"
+      }
     }
   }
 }

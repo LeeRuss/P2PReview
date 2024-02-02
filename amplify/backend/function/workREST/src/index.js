@@ -76,7 +76,7 @@ exports.handler = async (event) => {
       case 'GET': {
         const workID = event.queryStringParameters.workId;
         const query = {
-          text: `SELECT works.id, works.title, works.short_description, works.description, works.department, works.advancement, works.links,  work.end_date,  work.expected, users.uuid AS user_uuid FROM p2preview.works works
+          text: `SELECT works.id, works.title, works.short_description, works.description, works.department, works.advancement, works.links,  works.end_date,  works.expected, users.uuid AS user_uuid FROM p2preview.works works
           LEFT JOIN p2preview.users users
            on works.user_id = users.id  WHERE works.id = $1;`,
           values: [workID],
