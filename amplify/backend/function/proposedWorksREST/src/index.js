@@ -43,13 +43,24 @@ exports.handler = async (event) => {
         specializations.advanced.length != 0
       ) {
         query = {
-          text: `SELECT works.id, works.title, works.short_description, works.department, works.advancement, works.end_date,COUNT(reviews.id) AS reviews_count
-          FROM p2preview.works
-          LEFT JOIN p2preview.reviews ON p2preview.works.id = p2preview.reviews.work_id
-          WHERE works.flagged != true AND works.user_id != $1 
+          text: `SELECT
+          works.id,
+          works.title,
+          works.short_description,
+          works.department,
+          works.advancement,
+          works.end_date
+        FROM
+          p2preview.works
+        LEFT JOIN
+          p2preview.reviews ON p2preview.works.id = p2preview.reviews.work_id
+                          AND p2preview.reviews.user_id = $1
+        WHERE
+          works.flagged != true
+          AND works.user_id != $1
           AND works.end_date >= CURRENT_DATE
-          AND (p2preview.reviews.work_id IS NULL OR (p2preview.reviews.work_id IS NOT NULL AND p2preview.reviews.user_id != $1 ))
-          GROUP BY works.id;`,
+          AND (p2preview.reviews.id IS NULL OR p2preview.reviews.user_id != $1);
+        `,
           values: [id],
         };
         result = await db.query(query);
