@@ -115,7 +115,6 @@ exports.handler = async (event) => {
         let result = await db.query(query);
         console.log(result);
         const id = result.rows[0].id;
-
         query = {
           text: 'INSERT INTO p2preview.works(title, short_description, description, department, advancement, user_id, links, expected, end_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id;',
           values: [
@@ -127,7 +126,7 @@ exports.handler = async (event) => {
             id,
             JSON.stringify(data.links),
             data.expected,
-            data.end_date.toDate(),
+            data.end_date,
           ],
         };
         result = await db.query(query);

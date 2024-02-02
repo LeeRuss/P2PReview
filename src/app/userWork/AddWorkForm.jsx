@@ -49,6 +49,7 @@ export default function AddWorkForm() {
   });
 
   function onSubmit(data) {
+    data.end_date = data.end_date.toISOString().slice(0, 19).replace('T', ' ');
     const options = {
       headers: {
         Authorization: user.signInUserSession.idToken.jwtToken,
