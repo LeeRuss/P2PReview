@@ -171,7 +171,7 @@ exports.handler = async (event) => {
         result = await db.query(query);
         if (isUserCompetent(userSpecializations, result.rows[0])) {
           query = {
-            text: 'INSERT INTO p2preview.reviews(content, mark, user_id, work_id, work_links) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            text: 'INSERT INTO p2preview.reviews(content, mark, user_id, work_id, links) VALUES ($1, $2, $3, $4, $5) RETURNING *',
             values: [
               data.content,
               data.mark,
