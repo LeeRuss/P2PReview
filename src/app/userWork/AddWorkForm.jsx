@@ -47,7 +47,6 @@ export default function AddWorkForm() {
     control,
     name: 'links',
   });
-  const currentDate = new Date();
 
   function onSubmit(data) {
     const options = {

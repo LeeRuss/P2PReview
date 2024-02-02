@@ -4,6 +4,18 @@
 
 const { Client } = require('pg');
 
+function validateLinksArray(array) {
+  if (array.length > 5) return false;
+  return array.every((element) => {
+    try {
+      new URL(element.link);
+      return typeof element.description === 'string' ? true : false;
+    } catch (error) {
+      return false;
+    }
+  });
+}
+
 function validateData(data) {
   if (
     typeof data.content === 'string' &&
@@ -11,9 +23,9 @@ function validateData(data) {
     data.content.length <= 2000 &&
     typeof data.mark === 'number' &&
     typeof data.workId === 'number'
-  )
-    return true;
-  return false;
+  ) {
+    return validateLinksArray(data.links);
+  } else return false;
 }
 
 function isUserCompetent(userSpecializations, work) {
@@ -68,7 +80,7 @@ exports.handler = async (event) => {
         const workID = event.queryStringParameters.workId;
         let query = {
           text: `SELECT 
-          reviews.id, reviews.content, reviews.mark, 
+          reviews.id, reviews.content, reviews.mark, reviews.links,
           users.name AS user_name, users.specializations AS user_specializations, CAST(DATE_PART('year', AGE(CURRENT_DATE, users.birth_date)) AS INT) AS user_age
            FROM p2preview.reviews reviews
            LEFT JOIN p2preview.users users
@@ -159,8 +171,8 @@ exports.handler = async (event) => {
         result = await db.query(query);
         if (isUserCompetent(userSpecializations, result.rows[0])) {
           query = {
-            text: 'INSERT INTO p2preview.reviews(content, mark, user_id, work_id) VALUES ($1, $2, $3, $4) RETURNING *',
-            values: [data.content, data.mark, id, data.workId],
+            text: 'INSERT INTO p2preview.reviews(content, mark, user_id, work_id, work_links) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            values: [data.content, data.mark, id, data.workId, data.links],
           };
           result = await db.query(query);
           console.log(result);
