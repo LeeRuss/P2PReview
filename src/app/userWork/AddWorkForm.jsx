@@ -15,6 +15,7 @@ import {
   Tooltip,
   Alert,
   CircularProgress,
+  Badge,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -126,7 +127,11 @@ export default function AddWorkForm() {
             id="short_description"
             label="Short description"
             error={!!errors.short_description}
-            helperText={errors.short_description?.message}
+            helperText={
+              errors.short_description
+                ? errors.short_description.message
+                : 'Write something to encourage others to see your work.'
+            }
           />
         )}
       />
@@ -151,7 +156,36 @@ export default function AddWorkForm() {
             id="description"
             label="Full description"
             error={!!errors.description}
-            helperText={errors.description?.message}
+            helperText={
+              errors.description
+                ? errors.description.message
+                : 'Describe your job. Write everything important about it.'
+            }
+          />
+        )}
+      />
+      <Controller
+        name="expected"
+        control={control}
+        defaultValue=""
+        rules={{
+          required:
+            'This segment is required. Describe what do you expect from the review.',
+          maxLength: { value: 1500, message: `It's too long.` },
+          minLength: { value: 50, message: `It's too short.` },
+        }}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            multiline
+            disabled={uploading}
+            margin="normal"
+            required
+            fullWidth
+            id="expected"
+            label="What do you expect from review"
+            error={!!errors.description}
+            helperText={errors.expected?.message}
           />
         )}
       />
@@ -209,29 +243,44 @@ export default function AddWorkForm() {
           }}
           render={({ field }) => (
             <FormControl margin="normal" sx={{ width: '47.5%' }}>
-              <InputLabel id="advancement" error={!!errors.advancement}>
-                Advancement level
-              </InputLabel>
-              <Select
-                {...field}
-                labelId="advancement"
-                label="Advancement level"
-                disabled={uploading}
-                error={!!errors.advancement}
-                sx={{
-                  textAlign: 'left',
-                }}
+              <Badge
+                color="secondary"
+                badgeContent={
+                  <Tooltip
+                    title={`Beginner - work is about basics from the subject.
+                    Intermediate - work is a bit more complicated. Only someone with at least few years of experience can properly review it.
+                    Advanced - work is about something very specific, something that only very experienced person with deep knowledge in subject can help you with. 
+                    `}
+                  >
+                    ?
+                  </Tooltip>
+                }
               >
-                <MenuItem key="beginner" value={'beginner'}>
-                  {'Beginner'}
-                </MenuItem>
-                <MenuItem key="intermediate" value={'intermediate'}>
-                  {'Intermediate'}
-                </MenuItem>
-                <MenuItem key="advanced" value={'advanced'}>
-                  {'Advanced'}
-                </MenuItem>
-              </Select>
+                <InputLabel id="advancement" error={!!errors.advancement}>
+                  Advancement level
+                </InputLabel>
+                <Select
+                  {...field}
+                  labelId="advancement"
+                  label="Advancement level"
+                  disabled={uploading}
+                  fullWidth
+                  error={!!errors.advancement}
+                  sx={{
+                    textAlign: 'left',
+                  }}
+                >
+                  <MenuItem key="beginner" value={'beginner'}>
+                    {'Beginner'}
+                  </MenuItem>
+                  <MenuItem key="intermediate" value={'intermediate'}>
+                    {'Intermediate'}
+                  </MenuItem>
+                  <MenuItem key="advanced" value={'advanced'}>
+                    {'Advanced'}
+                  </MenuItem>
+                </Select>
+              </Badge>
               <FormHelperText sx={{ color: theme.palette.error.main }}>
                 {errors.advancement?.message}
               </FormHelperText>
