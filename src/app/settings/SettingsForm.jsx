@@ -7,6 +7,8 @@ import {
   Button,
   CircularProgress,
   Alert,
+  Badge,
+  Tooltip,
 } from '@mui/material';
 import { API } from 'aws-amplify';
 import { UserContext } from '../contexts/UserContext';
@@ -91,104 +93,134 @@ export default function SettingsForm() {
   return (
     <>
       <FormControl sx={{ m: 1, minWidth: '50%', maxWidth: '75%' }}>
-        <InputLabel>Beginner</InputLabel>
-        <Select
-          multiple
-          value={selectedBeginner}
-          onChange={handleBeginner}
-          disabled={isLoading}
-          label="Beginner"
+        <Badge
+          color="secondary"
+          badgeContent={
+            <Tooltip title="You are at the beginner level if you have less than one year of experience. You only know the basics of the field.">
+              ?
+            </Tooltip>
+          }
         >
-          {specializationList.flatMap((spec) => [
-            <MenuItem
-              key={spec.name}
-              value={spec.name}
-              disabled
-              sx={{ backgroundColor: 'black', color: 'white' }}
-            >
-              {spec.name}
-            </MenuItem>,
-            ...spec.subDepartments.map((subDep) => {
-              return selectedIntermediate.find(
-                (element) => element === subDep
-              ) || selectedAdvanced.find((element) => element === subDep) ? (
-                <MenuItem key={subDep} value={subDep} disabled>
-                  {subDep}
-                </MenuItem>
-              ) : (
-                <MenuItem key={subDep} value={subDep}>
-                  {subDep}
-                </MenuItem>
-              );
-            }),
-          ])}
-        </Select>
+          <InputLabel>Beginner</InputLabel>
+          <Select
+            multiple
+            value={selectedBeginner}
+            onChange={handleBeginner}
+            disabled={isLoading}
+            fullWidth
+            label="Beginner"
+          >
+            {specializationList.flatMap((spec) => [
+              <MenuItem
+                key={spec.name}
+                value={spec.name}
+                disabled
+                sx={{ backgroundColor: 'black', color: 'white' }}
+              >
+                {spec.name}
+              </MenuItem>,
+              ...spec.subDepartments.map((subDep) => {
+                return selectedIntermediate.find(
+                  (element) => element === subDep
+                ) || selectedAdvanced.find((element) => element === subDep) ? (
+                  <MenuItem key={subDep} value={subDep} disabled>
+                    {subDep}
+                  </MenuItem>
+                ) : (
+                  <MenuItem key={subDep} value={subDep}>
+                    {subDep}
+                  </MenuItem>
+                );
+              }),
+            ])}
+          </Select>
+        </Badge>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: '50%', maxWidth: '75%' }}>
-        <InputLabel>Intermediate</InputLabel>
-        <Select
-          multiple
-          value={selectedIntermediate}
-          onChange={handleIntermediate}
-          disabled={isLoading}
-          label="Intermediate"
+        <Badge
+          color="secondary"
+          badgeContent={
+            <Tooltip title="You are at the intermediate level if you have about 2-3 years of experience or a bachelor's degree in the field.">
+              ?
+            </Tooltip>
+          }
         >
-          {specializationList.flatMap((spec) => [
-            <MenuItem
-              key={spec.name}
-              value={spec.name}
-              disabled
-              sx={{ backgroundColor: 'black', color: 'white' }}
-            >
-              {spec.name}
-            </MenuItem>,
-            ...spec.subDepartments.map((subDep) => {
-              return selectedBeginner.find((element) => element === subDep) ||
-                selectedAdvanced.find((element) => element === subDep) ? (
-                <MenuItem key={subDep} value={subDep} disabled>
-                  {subDep}
-                </MenuItem>
-              ) : (
-                <MenuItem key={subDep} value={subDep}>
-                  {subDep}
-                </MenuItem>
-              );
-            }),
-          ])}
-        </Select>
+          <InputLabel>Intermediate</InputLabel>
+          <Select
+            multiple
+            value={selectedIntermediate}
+            onChange={handleIntermediate}
+            disabled={isLoading}
+            fullWidth
+            label="Intermediate"
+          >
+            {specializationList.flatMap((spec) => [
+              <MenuItem
+                key={spec.name}
+                value={spec.name}
+                disabled
+                sx={{ backgroundColor: 'black', color: 'white' }}
+              >
+                {spec.name}
+              </MenuItem>,
+              ...spec.subDepartments.map((subDep) => {
+                return selectedBeginner.find((element) => element === subDep) ||
+                  selectedAdvanced.find((element) => element === subDep) ? (
+                  <MenuItem key={subDep} value={subDep} disabled>
+                    {subDep}
+                  </MenuItem>
+                ) : (
+                  <MenuItem key={subDep} value={subDep}>
+                    {subDep}
+                  </MenuItem>
+                );
+              }),
+            ])}
+          </Select>
+        </Badge>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: '50%', maxWidth: '75%' }}>
-        <InputLabel>Advanced</InputLabel>
-        <Select
-          multiple
-          value={selectedAdvanced}
-          onChange={handleAdvanced}
-          disabled={isLoading}
-          label="Advanced"
+        <Badge
+          color="secondary"
+          badgeContent={
+            <Tooltip title="You are at the advanced level if you have more than 3 years of experience or have at least a master's degree in the field. A given topic has no secrets from you.">
+              ?
+            </Tooltip>
+          }
         >
-          {specializationList.flatMap((spec) => [
-            <MenuItem
-              key={spec.name}
-              value={spec.name}
-              disabled
-              sx={{ backgroundColor: 'black', color: 'white' }}
-            >
-              {spec.name}
-            </MenuItem>,
-            ...spec.subDepartments.map((subDep) => {
-              return selectedBeginner.find((element) => element === subDep) ||
-                selectedIntermediate.find((element) => element === subDep) ? (
-                <MenuItem key={subDep} value={subDep} disabled>
-                  {subDep}
-                </MenuItem>
-              ) : (
-                <MenuItem key={subDep} value={subDep}>
-                  {subDep}
-                </MenuItem>
-              );
-            }),
-          ])}
-        </Select>
+          <InputLabel>Advanced</InputLabel>
+          <Select
+            multiple
+            value={selectedAdvanced}
+            onChange={handleAdvanced}
+            disabled={isLoading}
+            fullWidth
+            label="Advanced"
+          >
+            {specializationList.flatMap((spec) => [
+              <MenuItem
+                key={spec.name}
+                value={spec.name}
+                disabled
+                sx={{ backgroundColor: 'black', color: 'white' }}
+              >
+                {spec.name}
+              </MenuItem>,
+              ...spec.subDepartments.map((subDep) => {
+                return selectedBeginner.find((element) => element === subDep) ||
+                  selectedIntermediate.find((element) => element === subDep) ? (
+                  <MenuItem key={subDep} value={subDep} disabled>
+                    {subDep}
+                  </MenuItem>
+                ) : (
+                  <MenuItem key={subDep} value={subDep}>
+                    {subDep}
+                  </MenuItem>
+                );
+              }),
+            ])}
+          </Select>
+        </Badge>
       </FormControl>
       <Button
         onClick={saveChanges}
