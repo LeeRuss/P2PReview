@@ -20,7 +20,7 @@ import { API } from 'aws-amplify';
 import specializationList from '../settings/specializations.json';
 import ReviewersList from './ReviewersList';
 
-const myAPI = 'p2preview';
+const myAPI = 'p2previewapi';
 const path = '/reviewersRanking/{department}';
 
 export default function ReviewersRanking() {
@@ -44,11 +44,11 @@ export default function ReviewersRanking() {
     setLoading(true);
     API.get(myAPI, `/reviewersRanking/${data.department}`, options)
       .then((response) => {
-        console.log('Sending report succeeded');
+        console.log('Loading ranking succeeded');
         setRanking(response);
       })
       .catch((error) => {
-        console.log('Sending report failed');
+        console.log('Loading ranking failed');
         setError(error);
         console.log(error);
       })
