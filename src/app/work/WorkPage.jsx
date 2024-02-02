@@ -103,6 +103,14 @@ export default function Work() {
                 variant="h6"
                 gutterBottom
               >{`${work.department} - ${work.advancement}`}</Typography>
+              <Typography
+                component="p"
+                variant="h6"
+                gutterBottom
+              >{`Expiration date: ${work.end_date.substring(
+                0,
+                10
+              )}`}</Typography>
               <Divider
                 variant="middle"
                 flexItem
@@ -146,6 +154,28 @@ export default function Work() {
                 }}
               >
                 {work.description}
+              </Typography>
+              <Divider
+                variant="middle"
+                flexItem
+                textAlign="left"
+                sx={{ mt: '0.5rem', mb: '1rem', borderWidth: '1.5px' }}
+              >
+                <Typography component="h2" variant="h5">
+                  What is expected from review
+                </Typography>
+              </Divider>
+              <Typography
+                component="p"
+                align="justify"
+                sx={{
+                  alignSelf: 'flex-start',
+                  ml: '1rem',
+                  mr: '1rem',
+                  whiteSpace: 'pre-wrap',
+                }}
+              >
+                {work.expected}
               </Typography>
               {work.links?.length > 0 && (
                 <>
