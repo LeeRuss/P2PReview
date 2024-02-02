@@ -5,6 +5,9 @@ import {
   Typography,
   Button,
   Rating,
+  Divider,
+  List,
+  ListItem,
 } from '@mui/material/';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
@@ -47,6 +50,54 @@ export default function ReviewList({ reviewList, isUserWorkAuthor }) {
       </AccordionSummary>
       <AccordionDetails sx={{ display: 'flex', flexDirection: 'column' }}>
         <Typography textAlign="justify">{review.content}</Typography>
+        {review.links?.length > 0 && (
+          <>
+            <Divider
+              variant="middle"
+              flexItem
+              textAlign="left"
+              sx={{ mt: '1rem', mb: '1rem', borderWidth: '1.5px' }}
+            >
+              <Typography component="h2" variant="h5">
+                Links
+              </Typography>
+            </Divider>
+            <List sx={{ width: '100%' }}>
+              {review.links.map((link, index) => (
+                <ListItem key={index} sx={{ flexDirection: 'column' }}>
+                  <Typography
+                    component="p"
+                    align="justify"
+                    sx={{
+                      alignSelf: 'flex-start',
+                      ml: '1rem',
+                      mr: '1rem',
+                      whiteSpace: 'pre-wrap',
+                    }}
+                  >
+                    • {link.description}
+                  </Typography>
+                  <Button
+                    href={link.link}
+                    target="_blank"
+                    variant="contained"
+                    endIcon={<OpenInNewIcon />}
+                    sx={{
+                      alignSelf: 'flex-end',
+                      mr: '1rem',
+                      mt: '1rem',
+                      mb: '1rem',
+                      maxWidth: '40%',
+                      wordBreak: 'break-word',
+                    }}
+                  >
+                    <b>{link.link}</b>
+                  </Button>
+                </ListItem>
+              ))}
+            </List>
+          </>
+        )}
         {!isUserWorkAuthor && (
           <Button
             component={Link}
