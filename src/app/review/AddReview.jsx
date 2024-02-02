@@ -145,110 +145,130 @@ export default function AddReview() {
               flexItem
               sx={{ mt: '0.5rem', mb: '1rem', borderWidth: '1.5px' }}
             />
-            {fields.flatMap((field, index) => [
-              <Controller
-                key={`link-${field.id}`}
-                name={`links.${index}.link`}
-                control={control}
-                rules={{
-                  required: 'You need to provide url address.',
-                  validate: (value) => {
-                    if (
-                      value &&
-                      !/^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i.test(value)
-                    ) {
-                      return 'Invalid URL';
-                    }
-                    return true;
-                  },
-                }}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label={`Link ${index + 1}`}
-                    disabled={uploading}
-                    error={
-                      errors.links
-                        ? errors.links[index].link
-                          ? true
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              {fields.flatMap((field, index) => [
+                <Controller
+                  key={`link-${field.id}`}
+                  name={`links.${index}.link`}
+                  control={control}
+                  rules={{
+                    required: 'You need to provide url address.',
+                    validate: (value) => {
+                      if (
+                        value &&
+                        !/^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i.test(value)
+                      ) {
+                        return 'Invalid URL';
+                      }
+                      return true;
+                    },
+                  }}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label={`Link ${index + 1}`}
+                      disabled={uploading}
+                      fullWidth
+                      error={
+                        errors.links
+                          ? errors.links[index].link
+                            ? true
+                            : false
                           : false
-                        : false
-                    }
-                    helperText={
-                      errors.links ? errors.links[index]?.link?.message : null
-                    }
-                    sx={{ margin: '0.5rem 0' }}
-                  />
-                )}
-              />,
-              <Controller
-                key={`link-description-${field.id}`}
-                name={`links.${index}.description`}
-                control={control}
-                rules={{
-                  required:
-                    'You need to provide simple description to your URL address.',
-                  maxLength: 150,
-                }}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label={`Description ${index + 1}`}
-                    disabled={uploading}
-                    error={
-                      errors.links
-                        ? errors.links[index].description
-                          ? true
+                      }
+                      helperText={
+                        errors.links ? errors.links[index]?.link?.message : null
+                      }
+                      sx={{ margin: '0.5rem 0' }}
+                    />
+                  )}
+                />,
+
+                <Controller
+                  key={`link-description-${field.id}`}
+                  name={`links.${index}.description`}
+                  control={control}
+                  rules={{
+                    required:
+                      'You need to provide simple description to your URL address.',
+                    maxLength: 150,
+                  }}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
+                      label={`Description ${index + 1}`}
+                      disabled={uploading}
+                      fullWidth
+                      error={
+                        errors.links
+                          ? errors.links[index].description
+                            ? true
+                            : false
                           : false
-                        : false
-                    }
-                    helperText={
-                      errors.links
-                        ? errors.links[index]?.description?.message
-                        : null
-                    }
-                    sx={{ margin: '0.5rem 0' }}
-                  />
-                )}
-              />,
+                      }
+                      helperText={
+                        errors.links
+                          ? errors.links[index]?.description?.message
+                          : null
+                      }
+                      sx={{ margin: '0.5rem 0' }}
+                    />
+                  )}
+                />,
+                <Button
+                  key={`link-delete-${index}`}
+                  type="button"
+                  variant="contained"
+                  disabled={uploading}
+                  onClick={() => remove(index)}
+                  startIcon={<DeleteIcon />}
+                  sx={{ width: 'auto', alignSelf: 'flex-start' }}
+                >
+                  Remove
+                </Button>,
+              ])}
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
               <Button
-                key={`link-delete-${index}`}
                 type="button"
                 variant="contained"
-                disabled={uploading}
-                onClick={() => remove(index)}
-                startIcon={<DeleteIcon />}
-                sx={{ width: 'auto', alignSelf: 'flex-end' }}
+                disabled={fields.length < 5 && !uploading ? false : true}
+                onClick={() => append({ link: '', description: '' })}
+                startIcon={<AddIcon />}
+                sx={{ width: '20%', margin: '0.5rem 0', alignSelf: 'flex-end' }}
               >
-                Remove
-              </Button>,
-            ])}
-            <Button
-              type="button"
-              variant="contained"
-              disabled={fields.length < 5 && !uploading ? false : true}
-              onClick={() => append({ link: '', description: '' })}
-              startIcon={<AddIcon />}
-              sx={{ width: '20%', margin: '0.5rem 0' }}
-            >
-              Add
-            </Button>
-            <Typography sx={{ mt: '0.5rem' }}>Overall rating:</Typography>
-            <Controller
-              name="mark"
-              control={control}
-              defaultValue={0}
-              render={({ field }) => (
-                <Rating
-                  {...field}
-                  precision={0.5}
-                  disabled={uploading}
-                  id="review_rating"
-                  size="large"
-                  value={parseFloat(field.value)}
-                />
-              )}
-            />
+                Add
+              </Button>
+              <Typography sx={{ mt: '0.5rem' }}>Overall rating:</Typography>
+              <Controller
+                name="mark"
+                control={control}
+                defaultValue={0}
+                render={({ field }) => (
+                  <Rating
+                    {...field}
+                    precision={0.5}
+                    disabled={uploading}
+                    id="review_rating"
+                    size="large"
+                    value={parseFloat(field.value)}
+                  />
+                )}
+              />
+            </Box>
+
             {uploadingEnded && uploadSuccess && (
               <Alert
                 severity="success"
