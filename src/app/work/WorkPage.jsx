@@ -14,6 +14,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import AddReview from '../review/AddReview';
 import WorkReviewsList from './WorkReviewsList';
+import ReportDialog from './ReportDialog';
 import { API } from 'aws-amplify';
 import { UserContext } from '../contexts/UserContext';
 
@@ -234,7 +235,10 @@ export default function Work() {
               {work.user_uuid === user.attributes.sub ? (
                 <WorkReviewsList />
               ) : (
-                <AddReview />
+                <>
+                  <AddReview />
+                  <ReportDialog />
+                </>
               )}
             </>
           )}
