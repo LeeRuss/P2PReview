@@ -9,6 +9,7 @@ import {
   Alert,
   Badge,
   Tooltip,
+  Typography,
 } from '@mui/material';
 import { API } from 'aws-amplify';
 import { UserContext } from '../contexts/UserContext';
@@ -97,7 +98,7 @@ export default function SettingsForm() {
           color="secondary"
           badgeContent={
             <Tooltip title="You are at the beginner level if you have less than one year of experience. You only know the basics of the field.">
-              ?
+              <span>?</span>
             </Tooltip>
           }
         >
@@ -141,7 +142,7 @@ export default function SettingsForm() {
           color="secondary"
           badgeContent={
             <Tooltip title="You are at the intermediate level if you have about 2-3 years of experience or a bachelor's degree in the field.">
-              ?
+              <span>?</span>
             </Tooltip>
           }
         >
@@ -184,7 +185,7 @@ export default function SettingsForm() {
           color="secondary"
           badgeContent={
             <Tooltip title="You are at the advanced level if you have more than 3 years of experience or have at least a master's degree in the field. A given topic has no secrets from you.">
-              ?
+              <span>?</span>
             </Tooltip>
           }
         >

@@ -19,6 +19,10 @@ import {
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 import specializationList from '../settings/specializations.json';
 import { API } from 'aws-amplify';
 import { useState, useContext } from 'react';
@@ -43,6 +47,7 @@ export default function AddWorkForm() {
     control,
     name: 'links',
   });
+  const currentDate = new Date();
 
   function onSubmit(data) {
     const options = {
@@ -51,6 +56,7 @@ export default function AddWorkForm() {
       },
       body: data,
     };
+    console.log(data);
     setUploading(true);
     setUploadingEnded(false);
     API.post(myAPI, path, options)
@@ -159,7 +165,7 @@ export default function AddWorkForm() {
             helperText={
               errors.description
                 ? errors.description.message
-                : 'Describe your job. Write everything important about it.'
+                : 'Describe your work. Write everything important about it.'
             }
           />
         )}
@@ -247,12 +253,12 @@ export default function AddWorkForm() {
                 color="secondary"
                 badgeContent={
                   <Tooltip
-                    title={`Beginner - work is about basics from the subject.
+                    title="Beginner - work is about basics from the subject.
                     Intermediate - work is a bit more complicated. Only someone with at least few years of experience can properly review it.
                     Advanced - work is about something very specific, something that only very experienced person with deep knowledge in subject can help you with. 
-                    `}
+                    "
                   >
-                    ?
+                    <span>?</span>
                   </Tooltip>
                 }
               >
@@ -288,6 +294,33 @@ export default function AddWorkForm() {
           )}
         />
       </Box>
+      <Controller
+        name="end_date"
+        control={control}
+        defaultValue=""
+        rules={{
+          required:
+            'You need to set  of your work. You must select the date by which you expect the review.',
+        }}
+        render={({ field }) => (
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              {...field}
+              format="DD/MM/YYYY"
+              label="End of reviewing date"
+              slotProps={{
+                textField: {
+                  error: !!errors.end_date,
+                  helperText: errors.end_date
+                    ? errors.end_date.message
+                    : 'Select the date by which you expect the review.',
+                },
+              }}
+              minDate={dayjs().add(3, 'day')}
+            />
+          </LocalizationProvider>
+        )}
+      />
       <Tooltip title="Add links to your work. It can be github, youtube, google drive, soundcloud, your website and so on.">
         <Typography variant="h5" component="h2">
           Links
