@@ -4,6 +4,14 @@
 
 const { Client } = require('pg');
 
+function daysUntil(date) {
+  date = typeof date === 'string' ? new Date(date) : date;
+  const ONE_DAY = 1000 * 60 * 60 * 24;
+  const differenceMs = Math.abs(date - new Date());
+  // Convert back to days and return
+  return Math.round(differenceMs / ONE_DAY);
+}
+
 exports.handler = async (event) => {
   console.log(`EVENT: ${JSON.stringify(event)}`);
 
@@ -35,10 +43,12 @@ exports.handler = async (event) => {
         specializations.advanced.length != 0
       ) {
         query = {
-          text: `SELECT works.id, works.title, works.short_description, works.department, works.advancement, COUNT(reviews.id) AS reviews_count
+          text: `SELECT works.id, works.title, works.short_description, works.department, works.advancement, works.end_date,COUNT(reviews.id) AS reviews_count
           FROM p2preview.works
           LEFT JOIN p2preview.reviews ON p2preview.works.id = p2preview.reviews.work_id
-          WHERE works.user_id != $1 AND (p2preview.reviews.work_id IS NULL OR (p2preview.reviews.work_id IS NOT NULL AND p2preview.reviews.user_id != $1 ))
+          WHERE works.flagged != true AND works.user_id != $1 
+          AND works.end_date >= CURRENT_DATE
+          AND (p2preview.reviews.work_id IS NULL OR (p2preview.reviews.work_id IS NOT NULL AND p2preview.reviews.user_id != $1 ))
           GROUP BY works.id;`,
           values: [id],
         };
@@ -49,6 +59,9 @@ exports.handler = async (event) => {
           if (record.advancement === 'advanced') {
             if (specializations.advanced.includes(record.department)) {
               record.score = 15;
+              if (daysUntil(record.end_date) < 3) {
+                record.score += 10;
+              }
               if (record.reviews_count == 0) {
                 record.score += 15;
               } else if (record.reviews_count < 6) record.score += 5;
@@ -63,6 +76,9 @@ exports.handler = async (event) => {
               specializations.intermediate.includes(record.department)
             ) {
               record.score = 10;
+              if (daysUntil(record.end_date) < 3) {
+                record.score += 10;
+              }
               if (record.reviews_count == 0) {
                 record.score += 15;
               } else if (record.reviews_count < 6) record.score += 5;
@@ -77,6 +93,9 @@ exports.handler = async (event) => {
               specializations.beginner.includes(record.department)
             ) {
               record.score = 5;
+              if (daysUntil(record.end_date) < 3) {
+                record.score += 10;
+              }
               if (record.reviews_count == 0) {
                 record.score += 15;
               } else if (record.reviews_count < 6) record.score += 5;
