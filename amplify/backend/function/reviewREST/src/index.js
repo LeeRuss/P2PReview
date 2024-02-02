@@ -172,7 +172,13 @@ exports.handler = async (event) => {
         if (isUserCompetent(userSpecializations, result.rows[0])) {
           query = {
             text: 'INSERT INTO p2preview.reviews(content, mark, user_id, work_id, work_links) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-            values: [data.content, data.mark, id, data.workId, data.links],
+            values: [
+              data.content,
+              data.mark,
+              id,
+              data.workId,
+              JSON.stringify(data.links),
+            ],
           };
           result = await db.query(query);
           console.log(result);

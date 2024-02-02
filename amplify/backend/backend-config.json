@@ -49,6 +49,22 @@
           ],
           "category": "function",
           "resourceName": "reviewREST"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "reviewersRankingREST"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "reportREST"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -107,7 +123,17 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "reportREST": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "reviewREST": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "reviewersRankingREST": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -247,6 +273,62 @@
         }
       ]
     },
+    "AMPLIFY_function_reportREST_dbEndpoint": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reportREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reportREST_dbName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reportREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reportREST_dbPassword": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reportREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reportREST_dbPort": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reportREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reportREST_dbUser": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reportREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reportREST_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reportREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reportREST_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reportREST"
+        }
+      ]
+    },
     "AMPLIFY_function_reviewREST_dbEndpoint": {
       "usedBy": [
         {
@@ -300,6 +382,62 @@
         {
           "category": "function",
           "resourceName": "reviewREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reviewersRankingREST_dbEndpoint": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewersRankingREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reviewersRankingREST_dbName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewersRankingREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reviewersRankingREST_dbPassword": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewersRankingREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reviewersRankingREST_dbPort": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewersRankingREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reviewersRankingREST_dbUser": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewersRankingREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reviewersRankingREST_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewersRankingREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reviewersRankingREST_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reviewersRankingREST"
         }
       ]
     },

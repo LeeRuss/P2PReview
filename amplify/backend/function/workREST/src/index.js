@@ -76,7 +76,7 @@ exports.handler = async (event) => {
       case 'GET': {
         const workID = event.queryStringParameters.workId;
         const query = {
-          text: `SELECT works.id, works.title, works.short_description, works.description, works.department, works.advancement, works.links,  work.end_date,  work.expected, users.uuid AS user_uuid FROM p2preview.works works
+          text: `SELECT works.id, works.title, works.short_description, works.description, works.department, works.advancement, works.links,  works.end_date,  works.expected, users.uuid AS user_uuid FROM p2preview.works works
           LEFT JOIN p2preview.users users
            on works.user_id = users.id  WHERE works.id = $1;`,
           values: [workID],
@@ -115,7 +115,6 @@ exports.handler = async (event) => {
         let result = await db.query(query);
         console.log(result);
         const id = result.rows[0].id;
-
         query = {
           text: 'INSERT INTO p2preview.works(title, short_description, description, department, advancement, user_id, links, expected, end_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id;',
           values: [
@@ -127,7 +126,7 @@ exports.handler = async (event) => {
             id,
             JSON.stringify(data.links),
             data.expected,
-            data.end_date.toDate(),
+            data.end_date,
           ],
         };
         result = await db.query(query);
