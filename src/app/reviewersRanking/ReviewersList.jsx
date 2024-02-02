@@ -5,7 +5,6 @@ import {
   ListItemAvatar,
   Avatar,
   Typography,
-  Divider,
 } from '@mui/material';
 
 export default function ReviewersList(reviewersList) {
