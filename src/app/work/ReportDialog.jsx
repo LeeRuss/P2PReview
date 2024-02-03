@@ -57,6 +57,7 @@ export default function ReportDialog() {
     API.post(myAPI, path, options)
       .then((response) => {
         console.log('Sending report succeeded');
+        console.log(response);
         setUploadSuccess(true);
       })
       .catch((error) => {
