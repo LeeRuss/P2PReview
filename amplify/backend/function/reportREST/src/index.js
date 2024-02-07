@@ -1,3 +1,15 @@
+/* Amplify Params - DO NOT EDIT
+	ENV
+	REGION
+	dbEndpoint
+	dbName
+	dbPassword
+	dbUser
+	dbPort
+	sendingEmail
+	targetEmail
+	reportsToFlagg
+Amplify Params - DO NOT EDIT */
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
@@ -14,7 +26,9 @@ exports.handler = async (event) => {
     password: process.env.dbPassword,
     port: process.env.dbPort,
   };
-  const email = process.env.email;
+  const sendingEmail = process.env.sendingEmail;
+  const targetEmail = process.env.targetEmail;
+  const reportsToFlagg = process.env.reportsToFlagg;
   const db = new Client(connectionParams);
   const ses = new AWS.SES({ region: process.env.REGION });
   const userUUID = event.requestContext.authorizer.claims.sub;
@@ -60,7 +74,7 @@ exports.handler = async (event) => {
         };
         console.log(result);
         result = await db.query(query);
-        if (result.rows[0].report_count == 3) {
+        if (result.rows[0].report_count == reportsToFlagg) {
           query = {
             text: 'UPDATE p2preview.works SET flagged = true WHERE id = $1;',
             values: [data.workId],
@@ -68,7 +82,7 @@ exports.handler = async (event) => {
           result = await db.query(query);
           const params = {
             Destination: {
-              ToAddresses: [email],
+              ToAddresses: [targetEmail],
             },
             Message: {
               Body: {
@@ -81,7 +95,7 @@ exports.handler = async (event) => {
                 Data: `Multiple reports of work: ${data.workId}`,
               },
             },
-            Source: email,
+            Source: sendingEmail,
           };
 
           result = await ses.sendEmail(params).promise();
