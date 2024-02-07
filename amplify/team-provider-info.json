@@ -96,10 +96,13 @@
           "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
           "dbName": "postgres",
           "dbPassword": "AvAtAr!2",
-          "dbPort": "5432",
           "dbUser": "postgres",
+          "dbPort": "5432",
+          "sendingEmail": "dariusz.russek.dyplomowa@gmail.com",
+          "targetEmail": "dariusz.russek.dyplomowa@gmail.com",
+          "reportsToFlagg": "3",
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/reportREST-6f417767577656733072-build.zip"
+          "s3Key": "amplify-builds/reportREST-4e6f5537715876526679-build.zip"
         }
       },
       "api": {

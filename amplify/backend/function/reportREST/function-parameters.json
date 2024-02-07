@@ -14,12 +14,24 @@
       "environmentVariableName": "dbPassword"
     },
     {
+      "cloudFormationParameterName": "dbUser",
+      "environmentVariableName": "dbUser"
+    },
+    {
       "cloudFormationParameterName": "dbPort",
       "environmentVariableName": "dbPort"
     },
     {
-      "cloudFormationParameterName": "dbUser",
-      "environmentVariableName": "dbUser"
+      "cloudFormationParameterName": "sendingEmail",
+      "environmentVariableName": "sendingEmail"
+    },
+    {
+      "cloudFormationParameterName": "targetEmail",
+      "environmentVariableName": "targetEmail"
+    },
+    {
+      "cloudFormationParameterName": "reportsToFlagg",
+      "environmentVariableName": "reportsToFlagg"
     }
   ]
 }

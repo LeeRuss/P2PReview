@@ -125,6 +125,7 @@
     },
     "reportREST": {
       "build": true,
+      "dependsOn": [],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
@@ -321,7 +322,31 @@
         }
       ]
     },
+    "AMPLIFY_function_reportREST_reportsToFlagg": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reportREST"
+        }
+      ]
+    },
     "AMPLIFY_function_reportREST_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reportREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reportREST_sendingEmail": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "reportREST"
+        }
+      ]
+    },
+    "AMPLIFY_function_reportREST_targetEmail": {
       "usedBy": [
         {
           "category": "function",

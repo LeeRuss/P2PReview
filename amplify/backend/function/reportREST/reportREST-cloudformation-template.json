@@ -25,10 +25,19 @@
     "dbPassword": {
       "Type": "String"
     },
+    "dbUser": {
+      "Type": "String"
+    },
     "dbPort": {
       "Type": "String"
     },
-    "dbUser": {
+    "sendingEmail": {
+      "Type": "String"
+    },
+    "targetEmail": {
+      "Type": "String"
+    },
+    "reportsToFlagg": {
       "Type": "String"
     }
   },
@@ -94,11 +103,20 @@
             "dbPassword": {
               "Ref": "dbPassword"
             },
+            "dbUser": {
+              "Ref": "dbUser"
+            },
             "dbPort": {
               "Ref": "dbPort"
             },
-            "dbUser": {
-              "Ref": "dbUser"
+            "sendingEmail": {
+              "Ref": "sendingEmail"
+            },
+            "targetEmail": {
+              "Ref": "targetEmail"
+            },
+            "reportsToFlagg": {
+              "Ref": "reportsToFlagg"
             }
           }
         },
@@ -119,12 +137,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "p2previewLambdaRole262e6593",
+            "p2previewLambdaRole61a6f1e6",
             {
               "Fn::Join": [
                 "",
                 [
-                  "p2previewLambdaRole262e6593",
+                  "p2previewLambdaRole61a6f1e6",
                   "-",
                   {
                     "Ref": "env"
