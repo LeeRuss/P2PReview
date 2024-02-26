@@ -37,7 +37,10 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="fixed" sx={{ width: '100vw' }}>
+    <AppBar
+      position="static"
+      sx={{ width: '100vw', mb: { xs: '1rem', md: '3rem' } }}
+    >
       <Container maxWidth="100%">
         <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
           <Button
