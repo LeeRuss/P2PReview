@@ -31,6 +31,7 @@ export default function ReviewList({ reviewList, isUserWorkAuthor }) {
       >
         <Rating
           value={review.mark}
+          precision={0.5}
           readOnly
           sx={{ mr: '1rem', alignSelf: 'center' }}
         />
