@@ -13,8 +13,6 @@ export default function AddWork() {
         padding: '0',
         display: 'flex',
         alignItems: 'stretch',
-        marginTop: { xs: '12.5vh', md: '10vh', lg: '10vh' },
-        marginBottom: '1rem',
       }}
     >
       <Paper elevation={8} sx={{ minHeight: '100%', width: '100%' }}>

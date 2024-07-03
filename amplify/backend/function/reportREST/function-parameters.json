@@ -1,0 +1,37 @@
+{
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "dbEndpoint",
+      "environmentVariableName": "dbEndpoint"
+    },
+    {
+      "cloudFormationParameterName": "dbName",
+      "environmentVariableName": "dbName"
+    },
+    {
+      "cloudFormationParameterName": "dbPassword",
+      "environmentVariableName": "dbPassword"
+    },
+    {
+      "cloudFormationParameterName": "dbUser",
+      "environmentVariableName": "dbUser"
+    },
+    {
+      "cloudFormationParameterName": "dbPort",
+      "environmentVariableName": "dbPort"
+    },
+    {
+      "cloudFormationParameterName": "sendingEmail",
+      "environmentVariableName": "sendingEmail"
+    },
+    {
+      "cloudFormationParameterName": "targetEmail",
+      "environmentVariableName": "targetEmail"
+    },
+    {
+      "cloudFormationParameterName": "reportsToFlagg",
+      "environmentVariableName": "reportsToFlagg"
+    }
+  ]
+}

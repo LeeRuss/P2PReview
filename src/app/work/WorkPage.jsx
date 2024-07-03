@@ -14,6 +14,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import AddReview from '../review/AddReview';
 import WorkReviewsList from './WorkReviewsList';
+import ReportDialog from './ReportDialog';
 import { API } from 'aws-amplify';
 import { UserContext } from '../contexts/UserContext';
 
@@ -65,8 +66,6 @@ export default function Work() {
         padding: '0',
         display: 'flex',
         alignItems: 'stretch',
-        marginTop: { xs: '12.5vh', md: '10vh', lg: '10vh' },
-        marginBottom: '1rem',
       }}
     >
       <Paper elevation={8} sx={{ minHeight: '100%', width: '100%' }}>
@@ -103,6 +102,14 @@ export default function Work() {
                 variant="h6"
                 gutterBottom
               >{`${work.department} - ${work.advancement}`}</Typography>
+              <Typography
+                component="p"
+                variant="h6"
+                gutterBottom
+              >{`Expiration date: ${work.end_date.substring(
+                0,
+                10
+              )}`}</Typography>
               <Divider
                 variant="middle"
                 flexItem
@@ -146,6 +153,28 @@ export default function Work() {
                 }}
               >
                 {work.description}
+              </Typography>
+              <Divider
+                variant="middle"
+                flexItem
+                textAlign="left"
+                sx={{ mt: '0.5rem', mb: '1rem', borderWidth: '1.5px' }}
+              >
+                <Typography component="h2" variant="h5">
+                  What is expected from review
+                </Typography>
+              </Divider>
+              <Typography
+                component="p"
+                align="justify"
+                sx={{
+                  alignSelf: 'flex-start',
+                  ml: '1rem',
+                  mr: '1rem',
+                  whiteSpace: 'pre-wrap',
+                }}
+              >
+                {work.expected}
               </Typography>
               {work.links?.length > 0 && (
                 <>
@@ -204,7 +233,10 @@ export default function Work() {
               {work.user_uuid === user.attributes.sub ? (
                 <WorkReviewsList />
               ) : (
-                <AddReview />
+                <>
+                  <AddReview />
+                  <ReportDialog />
+                </>
               )}
             </>
           )}

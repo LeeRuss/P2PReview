@@ -8,7 +8,9 @@ function App({ signOut, user }) {
   return (
     <UserContext.Provider value={{ signOut: signOut, user: user }}>
       <Header />
-      <Outlet />
+      <main>
+        <Outlet />
+      </main>
     </UserContext.Provider>
   );
 }

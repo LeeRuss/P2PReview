@@ -15,9 +15,14 @@ import {
   Tooltip,
   Alert,
   CircularProgress,
+  Badge,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 import specializationList from '../settings/specializations.json';
 import { API } from 'aws-amplify';
 import { useState, useContext } from 'react';
@@ -44,12 +49,14 @@ export default function AddWorkForm() {
   });
 
   function onSubmit(data) {
+    data.end_date = data.end_date.toISOString().slice(0, 19).replace('T', ' ');
     const options = {
       headers: {
         Authorization: user.signInUserSession.idToken.jwtToken,
       },
       body: data,
     };
+    console.log(data);
     setUploading(true);
     setUploadingEnded(false);
     API.post(myAPI, path, options)
@@ -126,7 +133,11 @@ export default function AddWorkForm() {
             id="short_description"
             label="Short description"
             error={!!errors.short_description}
-            helperText={errors.short_description?.message}
+            helperText={
+              errors.short_description
+                ? errors.short_description.message
+                : 'Write something to encourage others to see your work.'
+            }
           />
         )}
       />
@@ -151,7 +162,36 @@ export default function AddWorkForm() {
             id="description"
             label="Full description"
             error={!!errors.description}
-            helperText={errors.description?.message}
+            helperText={
+              errors.description
+                ? errors.description.message
+                : 'Describe your work. Write everything important about it.'
+            }
+          />
+        )}
+      />
+      <Controller
+        name="expected"
+        control={control}
+        defaultValue=""
+        rules={{
+          required:
+            'This segment is required. Describe what do you expect from the review.',
+          maxLength: { value: 1500, message: `It's too long.` },
+          minLength: { value: 50, message: `It's too short.` },
+        }}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            multiline
+            disabled={uploading}
+            margin="normal"
+            required
+            fullWidth
+            id="expected"
+            label="What do you expect from review"
+            error={!!errors.description}
+            helperText={errors.expected?.message}
           />
         )}
       />
@@ -209,29 +249,44 @@ export default function AddWorkForm() {
           }}
           render={({ field }) => (
             <FormControl margin="normal" sx={{ width: '47.5%' }}>
-              <InputLabel id="advancement" error={!!errors.advancement}>
-                Advancement level
-              </InputLabel>
-              <Select
-                {...field}
-                labelId="advancement"
-                label="Advancement level"
-                disabled={uploading}
-                error={!!errors.advancement}
-                sx={{
-                  textAlign: 'left',
-                }}
+              <Badge
+                color="secondary"
+                badgeContent={
+                  <Tooltip
+                    title="Beginner - work is about basics from the subject.
+                    Intermediate - work is a bit more complicated. Only someone with at least few years of experience can properly review it.
+                    Advanced - work is about something very specific, something that only very experienced person with deep knowledge in subject can help you with. 
+                    "
+                  >
+                    <span>?</span>
+                  </Tooltip>
+                }
               >
-                <MenuItem key="beginner" value={'beginner'}>
-                  {'Beginner'}
-                </MenuItem>
-                <MenuItem key="intermediate" value={'intermediate'}>
-                  {'Intermediate'}
-                </MenuItem>
-                <MenuItem key="advanced" value={'advanced'}>
-                  {'Advanced'}
-                </MenuItem>
-              </Select>
+                <InputLabel id="advancement" error={!!errors.advancement}>
+                  Advancement level
+                </InputLabel>
+                <Select
+                  {...field}
+                  labelId="advancement"
+                  label="Advancement level"
+                  disabled={uploading}
+                  fullWidth
+                  error={!!errors.advancement}
+                  sx={{
+                    textAlign: 'left',
+                  }}
+                >
+                  <MenuItem key="beginner" value={'beginner'}>
+                    {'Beginner'}
+                  </MenuItem>
+                  <MenuItem key="intermediate" value={'intermediate'}>
+                    {'Intermediate'}
+                  </MenuItem>
+                  <MenuItem key="advanced" value={'advanced'}>
+                    {'Advanced'}
+                  </MenuItem>
+                </Select>
+              </Badge>
               <FormHelperText sx={{ color: theme.palette.error.main }}>
                 {errors.advancement?.message}
               </FormHelperText>
@@ -239,6 +294,33 @@ export default function AddWorkForm() {
           )}
         />
       </Box>
+      <Controller
+        name="end_date"
+        control={control}
+        defaultValue=""
+        rules={{
+          required:
+            'You need to set  of your work. You must select the date by which you expect the review.',
+        }}
+        render={({ field }) => (
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              {...field}
+              format="DD/MM/YYYY"
+              label="End of reviewing date"
+              slotProps={{
+                textField: {
+                  error: !!errors.end_date,
+                  helperText: errors.end_date
+                    ? errors.end_date.message
+                    : 'Select the date by which you expect the review.',
+                },
+              }}
+              minDate={dayjs().add(3, 'day')}
+            />
+          </LocalizationProvider>
+        )}
+      />
       <Tooltip title="Add links to your work. It can be github, youtube, google drive, soundcloud, your website and so on.">
         <Typography variant="h5" component="h2">
           Links

@@ -49,7 +49,7 @@
         },
         "workREST": {
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/workREST-33756134472b44757557-build.zip",
+          "s3Key": "amplify-builds/workREST-44562b554c7549717474-build.zip",
           "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
           "dbName": "postgres",
           "dbPassword": "AvAtAr!2",
@@ -63,7 +63,7 @@
           "dbPort": "5432",
           "dbUser": "postgres",
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/proposedWorksREST-3830734466672b613571-build.zip"
+          "s3Key": "amplify-builds/proposedWorksREST-556675437877716f476c-build.zip"
         },
         "userReviewsREST": {
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
@@ -76,12 +76,33 @@
         },
         "reviewREST": {
           "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
-          "s3Key": "amplify-builds/reviewREST-75433870627358615445-build.zip",
+          "s3Key": "amplify-builds/reviewREST-6e3661544c3772696a57-build.zip",
           "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
           "dbName": "postgres",
           "dbPassword": "AvAtAr!2",
           "dbPort": "5432",
           "dbUser": "postgres"
+        },
+        "reviewersRankingREST": {
+          "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
+          "dbName": "postgres",
+          "dbPassword": "AvAtAr!2",
+          "dbPort": "5432",
+          "dbUser": "postgres",
+          "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
+          "s3Key": "amplify-builds/reviewersRankingREST-656c7664426852496858-build.zip"
+        },
+        "reportREST": {
+          "dbEndpoint": "p2preview.cawldlgqm55v.eu-central-1.rds.amazonaws.com",
+          "dbName": "postgres",
+          "dbPassword": "AvAtAr!2",
+          "dbUser": "postgres",
+          "dbPort": "5432",
+          "sendingEmail": "dariusz.russek.dyplomowa@gmail.com",
+          "targetEmail": "dariusz.russek.dyplomowa@gmail.com",
+          "reportsToFlagg": "3",
+          "deploymentBucketName": "amplify-p2preview-dev-160151-deployment",
+          "s3Key": "amplify-builds/reportREST-4e6f5537715876526679-build.zip"
         }
       },
       "api": {

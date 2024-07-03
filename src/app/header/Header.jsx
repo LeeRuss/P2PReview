@@ -37,7 +37,10 @@ export default function Header() {
   };
 
   return (
-    <AppBar position="fixed" sx={{ width: '100vw' }}>
+    <AppBar
+      position="static"
+      sx={{ width: '100vw', mb: { xs: '1rem', md: '3rem' } }}
+    >
       <Container maxWidth="100%">
         <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
           <Button
@@ -112,6 +115,13 @@ export default function Header() {
               >
                 <Typography textAlign="center">Your reviews</Typography>
               </MenuItem>
+              <MenuItem
+                component={RouterLink}
+                to="/reviewersRanking"
+                onClick={handleCloseNavMenu}
+              >
+                <Typography textAlign="center">Reviewers ranking</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Button
@@ -149,6 +159,13 @@ export default function Header() {
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
               Your reviews
+            </Button>
+            <Button
+              component={RouterLink}
+              to="/reviewersRanking"
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            >
+              Reviewers ranking
             </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
