@@ -159,14 +159,15 @@ export default function ReviewersRanking() {
             flexItem
             sx={{ mt: '0.5rem', mb: '1rem', borderWidth: '1.5px' }}
           />
-          {loading && (
+          {loading ? (
             <CircularProgress
               size="5.5rem"
-              sx={{ mt: '50%' }}
+              sx={{ mt: '25%' }}
             ></CircularProgress>
+          ) : (
+            !!ranking && <ReviewersList reviewersList={ranking} />
           )}
-          {!!ranking && <ReviewersList reviewersList={ranking} />}
-          {!!error && (
+          {!!error && !ranking && (
             <Typography
               component="h1"
               variant="h5"
